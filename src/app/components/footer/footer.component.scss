@@ -1,0 +1,110 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+.footer {
+  background: #004027;
+  background-size: 100% 100%;
+  color: $textFooter;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 70px;
+  max-width: 1600px;
+  padding-bottom: 10px;
+
+  &-container {
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-right: auto;
+    margin-left: auto;
+
+    &__box {
+      width: 100%;
+      @include flexbox(normal, normal, column, nowrap);
+
+      .footer-logo {
+        height: 150px;
+        width: 100%;
+        text-align: center;
+        vertical-align: middle;
+
+        img {
+          height: inherit;
+        }
+      }
+    }
+
+    &__flex {
+      width: 100%;
+      @include flexbox(space-between, normal, row, nowrap);
+    }
+
+    &__menu {
+      width: 80%;
+      @include flexbox(normal, center, row, nowrap);
+
+      .footer-nav {
+        ul {
+          padding-left: 0;
+          list-style: none;
+          font-size: 10px;
+          letter-spacing: 0;
+          line-height: 24px;
+          margin-bottom: 0;
+
+          li a {
+            color: $textFooter;
+            font-size: $fontNavSize;
+            font-weight: 600;
+            letter-spacing: 0;
+            line-height: 56px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    &__menu_sec {
+      text-align: right;
+      @include flexbox(normal, flex-end, row, nowrap);
+
+      a {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: 32px;
+        color: $textFooter;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+a, a:hover{
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 960px) {
+  .footer-container__menu {
+    .footer-nav {
+      ul li a {
+        font-size: 44px;
+        line-height: 50px;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 576px) {
+  .footer-container__menu {
+    .footer-nav {
+      ul li a {
+        font-size: 36px;
+        line-height: 40px;
+      }
+    }
+  }
+}

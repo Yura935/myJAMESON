@@ -1,0 +1,21 @@
+<div class="container-admin">
+    <div class="admin-wrap">
+        <section class="container-fluid">
+            <div class="box-flex">
+                <div class="box-flex__category">
+                    <div class="category-menu">
+                        <a class="menu--link text-mode" [routerLink]="[ 'whiskeys' ]"
+                            routerLinkActive="dark-mode">Whiskeys</a>
+                        <a class="menu--link text-mode" [routerLink]="[ 'drinks' ]"
+                            routerLinkActive="dark-mode">Drinks</a>
+                    </div>
+                </div>
+                <div class="box-flex__content">
+                    <div class="tab-content">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

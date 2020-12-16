@@ -1,0 +1,23 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+.form{
+    @include flexbox(space-around, center, row, wrap);
+}
+
+h1{
+    font-size: 55px;
+    line-height: 65px;
+}
+
+input{
+    width: 320px;
+}
+
+.but{
+    width: 100%;
+}
+
+textarea{
+    resize: none;
+}

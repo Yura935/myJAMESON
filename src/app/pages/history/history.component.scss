@@ -1,0 +1,291 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+.history {
+  width: 100%;
+
+  &-image {
+    display: block;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    &__inner {
+      width: 100%;
+      height: 100vh;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;
+      background-image: url('https://img.idlassets.com/stage/Article/4016/heroLandscape/1/heroLandscape_1600x900.jpeg');
+    }
+  }
+
+  .container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    top: 0;
+    padding: 0 30px;
+
+    .history-title {
+      width: 60%;
+      position: absolute;
+      top: 0;
+      letter-spacing: 1.4px;
+      margin-bottom: 60px;
+      margin-top: 330px;
+      margin-left: 20px;
+      text-align: left;
+      @include flexbox(normal, normal, column, wrap);
+
+      &-head {
+        font-size: 76px;
+        line-height: 1.26;
+        font-weight: 600;
+        letter-spacing: normal;
+        color: $textColor;
+      }
+    }
+
+    .history-info {
+      @include flexbox(normal, normal, column, wrap);
+      margin-top: 80px;
+      padding: 0 110px;
+      width: 90%;
+
+      &__title {
+        color: $mainColorText;
+        font-weight: 600;
+        line-height: 70px;
+        font-size: 60px;
+        margin-bottom: 20px;
+      }
+
+      &__text {
+        width: 80%;
+        color: $mainColorText;
+        font-size: 20px;
+        margin-bottom: 40px;
+        line-height: 1.4;
+      }
+    }
+
+    .blog {
+      width: 100%;
+      margin-top: 40px;
+      padding: 0 110px;
+
+      &-info {
+        height: 400px;
+        margin-bottom: 32px;
+
+        &__img {
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+
+        .img1 {
+          background-image: url("https://jamesonwhiskey.s3-eu-west-1.amazonaws.com/JamesonWhiskey.com%20v2/image-carousel/Homepage/Jameson%2B-%2BEvergreen%2B-%2BFB%2BStill%2BImage.jpg");
+        }
+
+        .img2 {
+          background-image: url('//styles.idlassets.com/prod/jamesonwhiskey-v2/805/images/our-story/our_process.jpg');
+        }
+
+        .img3 {
+          background-image: url('//styles.idlassets.com/prod/jamesonwhiskey-v2/805/images/our-story/ingredients.jpg');
+        }
+
+        &__tag {
+          background-color: #fff;
+          width: 45%;
+          height: 45px;
+          margin-top: -44px;
+          line-height: 45px;
+          padding: 0 20px;
+          text-align: center;
+
+          span {
+            color: #84001d;
+            font-size: 22px;
+          }
+        }
+      }
+
+      &-content {
+        @include flexbox(normal, normal, column, wrap);
+        padding: 0 80px;
+
+        &-title {
+          color: $mainColorText;
+          font-weight: 600;
+          line-height: 70px;
+          font-size: 60px;
+          margin-bottom: 20px;
+        }
+
+        &-text {
+          color: $mainColorText;
+          font-size: 20px;
+          margin-bottom: 40px;
+          line-height: 1.4;
+        }
+
+        .blog-details {
+          color: #007749;
+          font-size: 1rem;
+          text-transform: uppercase;
+          font-weight: 600;
+
+          a:hover {
+            text-decoration: underline;
+            cursor: $linkCursor;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 960px) {
+  .history {
+    .container {
+      @include flexbox(center, center, column, wrap);
+
+      .history-title {
+        width: 90%;
+        @include flexbox(center, center, column, wrap);
+        margin-bottom: 0px;
+        margin-top: 110%;
+
+        &-head {
+          width: 40%;
+          text-align: center;
+          line-height: 48px;
+          font-size: 42px;
+        }
+      }
+
+      .history-info {
+        padding: 0;
+
+        &__title {
+          line-height: 65px;
+          font-size: 52px;
+          margin-bottom: 20px;
+        }
+
+        &__text {
+          font-size: 18px;
+          margin-bottom: 20px;
+        }
+      }
+
+      .blog {
+        margin-top: 50px;
+        padding: 0;
+
+        &-info {
+          margin-bottom: 25px;
+          padding: 0;
+
+          &__tag {
+            width: 40%;
+
+            span {
+              font-size: 22px;
+            }
+          }
+        }
+
+        &-content {
+          padding: 0;
+
+          &-title {
+            line-height: 65px;
+            font-size: 52px;
+            margin-bottom: 20px;
+          }
+
+          &-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 576px) {
+  .history {
+    width: 100%;
+    .container {
+      padding: 0 20px;
+
+      .history-title {
+        margin-top: 120%;
+        margin-left: 0;
+
+        &-head {
+          width: 75%;
+        }
+      }
+
+      .history-info {
+        padding: 0;
+        margin-top: 50px;
+
+        &__title {
+          line-height: 1.3;
+          font-size: 32px;
+          margin-bottom: 20px;
+        }
+
+        &__text {
+          font-size: 16px;
+          margin-bottom: 20px;
+        }
+      }
+
+      .blog {
+        margin-top: 30px;
+        &-info {
+          padding: 0;
+
+          &__tag {
+            height: 35px;
+            line-height: 35px;
+            width: 50%;
+            padding: 0;
+            margin-top: -33px;
+
+            span {
+              font-size: 12px;
+            }
+          }
+        }
+
+        &-content {
+          &-title {
+            line-height: 1.3;
+            font-size: 32px;
+          }
+
+          &-text {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

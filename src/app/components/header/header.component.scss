@@ -1,0 +1,454 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 15vh;
+  width: 100%;
+  z-index: 1030;
+  padding: 0 40px 0;
+  margin: 0 auto 0;
+  @include flexbox(flex-start, center, row, wrap);
+  background-color: $mainColor;
+
+  &-hamburger {
+    height: 40px;
+    width: 40px;
+    display: none;
+    cursor: $linkCursor;
+    background-color: rgba(0, 64, 39, 0);
+    border: none;
+    background-position: center;
+    background-size: contain;
+    position: relative;
+    margin-left: 15px;
+
+    .bar1,
+    .bar2,
+    .bar3 {
+      width: 25px;
+      height: 3px;
+      background-color: $textColor;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
+    &:focus{
+      outline: none;
+    }
+  }
+
+  .navbar-brand {
+    display: inline-block;
+    padding-top: .2875rem;
+    padding-bottom: .2875rem;
+    font-size: 34px;
+    line-height: inherit;
+    white-space: nowrap;
+    position: absolute;
+    color: $textColor;
+    margin: 0 auto;
+    width: auto;
+    text-align: center;
+    cursor: $linkCursor;
+    text-decoration: none;
+  }
+}
+
+.img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+
+.img:focus {
+  outline: none;
+}
+
+.navbar-collapse {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 130;
+  padding: 0 10px 0 20px;
+  background: $mainColor;
+  transition: left 0.3s ease-out;
+
+  &__nav {
+    height: 100vh;
+    width: 100%;
+    margin-top: 30px;
+    @include flexbox(normal, normal, column, nowrap);
+
+    li:first-child {
+      margin-top: 90px;
+    }
+
+    li {
+      padding-left: .5em;
+
+      a {
+        font-size: $fontNavSize;
+        line-height: 57px;
+        color: $textColor;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      a:hover {
+        border-bottom: $baseBorder;
+        text-decoration: none;
+        outline: none;
+      }
+    }
+  }
+}
+
+.navbar-wrapper {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+
+  &__nav {
+    @include flexbox(normal, center, row, nowrap);
+    padding-left: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 48px;
+    list-style: none;
+
+    li {
+      padding: 0 18px;
+
+      a {
+        font-size: 18px;
+        line-height: 57px;
+        color: $textColor;
+        font-weight: 600;
+        cursor: $linkCursor;
+        text-decoration: none;
+        position: relative;
+      }
+
+      a.active {
+        border-bottom: $baseBorder;
+        border-color: salmon;
+      }
+      a::after{
+        content: '';
+        background-color: salmon;
+        height: 2px;
+        width: 0;
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+      }
+      a:hover::after{
+        transition: width 300ms linear;
+        width: 100%;
+      }
+    }
+  }
+}
+
+header .admin-block a {
+  position: absolute;
+  top: 100px;
+  right: 0;
+  padding: 10px;
+  font-family: "Comfortaa", serif;
+  border: 1px solid #c80000;
+  font-size: 15px;
+  line-height: 16px;
+  color: #fefefe;
+  background: #c80000;
+  border-radius: 10px 0 0 10px;
+  transition-property: padding-right;
+  transition-duration: 0.5s;
+  text-decoration: none;
+  z-index: 1;
+  &:hover {
+    padding: 10px 20px 10px 10px;
+  }
+}
+
+.modalI-all{
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, .7);
+  position: fixed;
+  z-index: 50;
+}
+
+.modalI {
+  position: fixed;
+  width: 60%;
+  background-color: $mainColor;
+  margin: 0 auto;
+  left: 20%;
+  z-index: 1;
+  transition: top 1s;
+
+  &-close {
+    height: 50px;
+    width: 100%;
+    padding: 10px 20px 0;
+
+    &__but {
+      height: 40px;
+      width: 40px;
+      cursor: $linkCursor;
+      border: none;
+      float: right;
+
+      .line1,
+      .line2 {
+        width: 30px;
+        height: 5px;
+        background-color: $textColor;
+        margin: 5px;
+        border-radius: 5px;
+      }
+
+      .line1 {
+        transform: rotate(-45deg) translate(-12px, 10px);
+      }
+
+      .line2 {
+        transform: rotate(45deg) translate(3px, 4px);
+      }
+    }
+  }
+
+  &-head {
+    width: 100%;
+    height: 80px;
+
+    &__title {
+      text-align: center;
+      color: $textColor;
+      line-height: 60px;
+      font-size: 40px;
+      font-weight: 600;
+    }
+  }
+
+  &-body {
+    width: 100%;
+    padding: 10px 20px 0;
+
+    &__box {
+      height: 100%;
+      width: 100%;
+      @include flexbox(normal, normal, column, nowrap);
+
+      .box-input {
+        @include flexbox(space-between, center, row, nowrap);
+        padding: 0 10px;
+        height: 50px;
+        margin-bottom: 10px;
+
+        label {
+          color: $textColor;
+          font-size: 22px;
+        }
+
+        input {
+          width: 250px;
+          height: 30px;
+          background-color: rgba(0, 64, 39, 0);
+          border: none;
+          padding-left: 10px;
+          border-bottom: 1px solid salmon;
+        }
+      }
+    }
+  }
+
+  &-button {
+    width: 100%;
+    height: 70px;
+    padding: 10px 20px;
+
+    .button__inner {
+      width: 40%;
+      height: 100%;
+      text-align: center;
+      line-height: 50px;
+      margin: 0 auto;
+      color: $textColor;
+      background-color: rgb(250, 128, 114);
+      font-size: 22px;
+      border: 1px solid salmon;
+    }
+
+    .button__inner:hover {
+      cursor: $linkCursor;
+      background-color: rgb(248, 95, 78);
+    }
+
+    .modalI-link {
+      height: 20px;
+      color: #fff;
+      float: right;
+    }
+
+    .modalI-link:hover {
+      cursor: $linkCursor;
+      text-decoration: underline;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .navbar {
+    height: 10vh;
+    padding: 5px 20px 0;
+
+    .navbar-brand {
+      left: 0;
+      right: 0;
+      width: 50%;
+      font-size: 45px;
+    }
+  }
+
+  .navbar-hamburger {
+    display: inline-block;
+  }
+
+  .navbar-wrapper {
+    display: none;
+  }
+
+  .navbar-collapse__nav {
+    margin-top: 30px;
+
+    li a {
+      font-size: 54px;
+      line-height: 67px;
+    }
+
+  }
+
+  header .admin-block a {
+    top: 120px;
+    padding: 20px;
+    font-size: 20px;
+    line-height: 18px;
+    &:hover {
+      padding: 20px 30px 20px 20px;
+    }
+  }
+  
+}
+
+@media screen and (max-width: 576px) {
+  .navbar {
+    height: 10vh;
+    padding: 5px 10px 0;
+
+    .navbar-brand {
+      font-size: 38px;
+    }
+  }
+
+  .navbar-collapse__nav {
+    margin-top: 30px;
+
+    li a {
+      font-size: 50px;
+      line-height: 60px;
+    }
+  }
+
+  .navbar-collapse__nav {
+    height: 100vh;
+    width: 100%;
+    margin-top: 30px;
+    @include flexbox(normal, normal, column, nowrap);
+
+    li:first-child {
+      margin-top: 40px;
+    }
+  }
+
+  .modal {
+    width: 95%;
+    left: 2.5%;
+
+    &-close {
+      height: 40px;
+      padding: 10px 15px 0;
+
+      &__but {
+        height: 30px;
+        width: 30px;
+
+        .line1,
+        .line2 {
+          width: 20px;
+          height: 3px;
+          margin: 5px;
+        }
+
+        .line1 {
+          transform: rotate(-45deg) translate(-6px, 6px);
+        }
+
+        .line2 {
+          transform: rotate(45deg) translate(0px, 0px);
+        }
+      }
+    }
+
+    &-head {
+      height: 65px;
+
+      &__title {
+        line-height: 55px;
+        font-size: 32px;
+      }
+    }
+
+    &-body {
+      padding: 0 15px;
+
+      &__box {
+        .box-input {
+          padding: 0;
+          height: 40px;
+
+          label {
+            font-size: 18px;
+          }
+
+          input {
+            width: 190px;
+          }
+        }
+      }
+    }
+
+    &-button {
+      .button__inner {
+        width: 50%;
+        font-size: 20px;
+      }
+    }
+  }
+
+  header .admin-block a {
+    top: 70px;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 15px;
+    &:hover {
+      padding: 10px 20px 10px 10px;
+    }}
+}

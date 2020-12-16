@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "jameson-f899f": {
+      "hosting": {
+        "jameson": [
+          "jameson-f899f"
+        ]
+      }
+    }
+  }
+}

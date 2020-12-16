@@ -1,0 +1,56 @@
+<section class="whiskeys">
+    <div class="whiskeys-slider">
+        <div class="whiskeys-slider_id"></div>
+    </div>
+    <div class="container-fluid">
+        <div class="whiskeys-title">
+            <h1 class="whiskeys-title-head">Jameson Irish Whiskey</h1>
+        </div>
+
+        <div class="whiskey-details">
+            <a [routerLink]="[ '/our-whiskeys/' + 'jameson-irish-whiskey' ]">Відкрий це зараз</a>
+        </div>
+
+        <div class="whiskey-info">
+            <div class="whiskey-info__title">
+                <h2>Тричі дистильований, дивовижно м'який віскі Jameson, який ні з чим не можна сплутати.</h2>
+            </div>
+            <div class="whiskey-info__text">
+                <p>Наша сім'я, як і будь-яка інша, є поєднанням різних характерів. І хоча кожен її член має свою
+                    індивідуальність, всі вони є частиною сім'ї Jameson, головна риса якої — чудовий смак. Тепер, коли
+                    ми розпалили у вас апетит, дозвольте нам втамувати вашу спрагу.
+                </p>
+            </div>
+            <div class="link-details">
+                <a [routerLink]="[ '/history' ]">Дізнайтеся більше про наш віскі</a>
+            </div>
+        </div>
+
+        <div class="products">
+            <div class="products-title">
+                <div class="products-title__inner">Різні смаки для кожного</div>
+            </div>
+
+            <div class="products-whiskeys">
+                <div class="product-card" *ngFor="let whiskey of whiskeys">
+                    <div class="product-card__inner">
+                        <a [routerLink]="[ '/our-whiskeys/' +whiskey.urlName ]">
+                            <div class="card-img" [style.backgroundImage]="'url('+whiskey.image+')'"></div>
+                            <div class="card-prod">
+                                <h3 class="card-prod-text">{{ whiskey.name }}</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote">
+            <div class="quote-box">
+                <h2>“Такий м'який, що я пив би його, навіть якби на ньому не було мого імені.”</h2>
+                <br>
+                <p>– Джон Джемесон</p>
+            </div>
+        </div>
+    </div>
+</section>
