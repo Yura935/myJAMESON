@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProfileGuard implements CanActivate {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -16,14 +16,12 @@ export class ProfileGuard implements CanActivate {
   }
 
   private checkLogin(): boolean {
-    if (localStorage.getItem('user')){
+    if (localStorage.getItem('user')) {
       const CURRENT_USER = JSON.parse(localStorage.getItem('user'));
-      if (CURRENT_USER.role === 'user' && CURRENT_USER != null){
+      if (CURRENT_USER.role === 'user' && CURRENT_USER != null) {
         return true;
       }
     }
     this.router.navigateByUrl('home');
   }
-
-  
 }

@@ -45,7 +45,6 @@ export class AuthService {
       });
   }
 
-
   signIn(email: string, password: string): void {
     this.auth.signInWithEmailAndPassword(email, password)
       .then(userResponse => {
@@ -75,4 +74,3 @@ export class AuthService {
       });
   }
 }
-

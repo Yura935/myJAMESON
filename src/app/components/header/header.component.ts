@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   userPass: string;
   userName: string;
   userPhone: string;
+  totalPrice: number = 0;
 
   constructor(private authService: AuthService) { }
 
@@ -48,10 +49,10 @@ export class HeaderComponent implements OnInit {
   }
 
   changeLog(): void {
-    if(this.sign == 'Sign UP'){
+    if (this.sign == 'Sign UP') {
       this.sign = 'Sign IN';
     }
-    else{
+    else {
       this.sign == 'Sign UP'
     }
     this.checkLog = !this.checkLog;
@@ -95,9 +96,8 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-
   signUp(): void {
-    if(this.userEmail && this.userPass && this.userName && this.userPhone){
+    if (this.userEmail && this.userPass && this.userName && this.userPhone) {
       this.authService.signUp(this.userEmail, this.userPass, this.userName, this.userPhone);
       this.reset();
       this.modalDel();
@@ -127,11 +127,10 @@ export class HeaderComponent implements OnInit {
     this.reset();
   }
 
-  reset(): void{
+  reset(): void {
     this.userEmail = '';
     this.userPass = '';
     this.userName = '';
     this.userPhone = '';
   }
-
 }

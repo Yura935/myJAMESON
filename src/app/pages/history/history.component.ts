@@ -16,10 +16,10 @@ export class HistoryComponent implements OnInit {
   }
 
   forDetails(): void {
-    if(this.details == 'ДІЗНАТИСЯ БІЛЬШЕ'){
+    if (this.details == 'ДІЗНАТИСЯ БІЛЬШЕ') {
       this.details = 'ЗАКРИТИ';
     }
-    else if(this.details == 'ЗАКРИТИ'){
+    else if (this.details == 'ЗАКРИТИ') {
       this.details = 'ДІЗНАТИСЯ БІЛЬШЕ';
     }
     document.querySelector('#details').textContent = this.details;
@@ -27,14 +27,13 @@ export class HistoryComponent implements OnInit {
   }
 
   forDetails1(): void {
-    if(this.details1 == 'ДІЗНАТИСЯ БІЛЬШЕ'){
+    if (this.details1 == 'ДІЗНАТИСЯ БІЛЬШЕ') {
       this.details1 = 'ЗАКРИТИ';
     }
-    else if(this.details1 == 'ЗАКРИТИ'){
+    else if (this.details1 == 'ЗАКРИТИ') {
       this.details1 = 'ДІЗНАТИСЯ БІЛЬШЕ';
     }
     document.querySelector('#details1').textContent = this.details1;
     this.check1 = !this.check1;
   }
-
 }

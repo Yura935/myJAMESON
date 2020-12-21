@@ -4,12 +4,13 @@ export interface IWhiskey {
     urlName: string;
     descriptionTitle: string;
     description: string;
-    image: string;
+    imageTitle: string;
+    imageBlog: string;
     aroma: string;
     taste: string;
     afterTaste: string;
     weight: string;
     price: number;
     video: string;
-    count?: number;    
+    count?: number;
 }

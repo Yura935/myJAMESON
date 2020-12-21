@@ -17,7 +17,8 @@ export class AdminWhiskeysComponent implements OnInit {
   whiskeyUrlName: string;
   whiskeyTitleDescription: string;
   whiskeyDescription: string;
-  whiskeyImage: string;
+  whiskeyTitleImage: string;
+  whiskeyBlogImage: string;
   aroma: string;
   taste: string;
   afterTaste: string = '';
@@ -28,24 +29,38 @@ export class AdminWhiskeysComponent implements OnInit {
 
   whiskeys: Array<IWhiskey> = [];
 
-  uploadProgress: Observable<number>;
+  uploadProgressTitle: Observable<number>;
+  uploadProgressBlog: Observable<number>;
   constructor(private storage: AngularFireStorage, private whiskeyService: WhiskeyService) { }
 
   ngOnInit(): void {
     this.getWiskeys();
   }
 
-  uploadFile(event): void {
+  uploadFileTitle(event): void {
     const file = event.target.files[0];
     const filePath = `images/${file.name}`;
     const upload = this.storage.upload(filePath, file);
-    this.uploadProgress = upload.percentageChanges();
+    this.uploadProgressTitle = upload.percentageChanges();
     upload.then(image => {
       this.storage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
-        this.whiskeyImage = url;
+        this.whiskeyTitleImage = url;
       });
       console.log('Photo added!');
 
+    });
+  }
+
+  uploadFileBlog(event): void {
+    const file = event.target.files[0];
+    const filePath = `images/${file.name}`;
+    const upload = this.storage.upload(filePath, file);
+    this.uploadProgressBlog = upload.percentageChanges();
+    upload.then(image => {
+      this.storage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
+        this.whiskeyBlogImage = url;
+      });
+      console.log('Photo added!');
     });
   }
 
@@ -68,7 +83,8 @@ export class AdminWhiskeysComponent implements OnInit {
       this.whiskeyUrlName,
       this.whiskeyTitleDescription,
       this.whiskeyDescription,
-      this.whiskeyImage,
+      this.whiskeyTitleImage,
+      this.whiskeyBlogImage,
       this.aroma,
       this.taste,
       this.afterTaste,
@@ -89,7 +105,8 @@ export class AdminWhiskeysComponent implements OnInit {
     this.whiskeyUrlName = whiskey.urlName;
     this.whiskeyTitleDescription = whiskey.descriptionTitle;
     this.whiskeyDescription = whiskey.description;
-    this.whiskeyImage = whiskey.image;
+    this.whiskeyTitleImage = whiskey.imageTitle;
+    this.whiskeyBlogImage = whiskey.imageBlog;
     this.aroma = whiskey.aroma;
     this.taste = whiskey.taste;
     this.afterTaste = whiskey.afterTaste;
@@ -114,7 +131,8 @@ export class AdminWhiskeysComponent implements OnInit {
       this.whiskeyUrlName,
       this.whiskeyTitleDescription,
       this.whiskeyDescription,
-      this.whiskeyImage,
+      this.whiskeyTitleImage,
+      this.whiskeyBlogImage,
       this.aroma,
       this.taste,
       this.afterTaste,
@@ -133,16 +151,16 @@ export class AdminWhiskeysComponent implements OnInit {
   reset(): void {
     this.whiskeyID = '';
     this.whiskeyName = '';
-      this.whiskeyUrlName= '';
-      this.whiskeyTitleDescription = ''
-      this.whiskeyDescription = '';
-      this.whiskeyImage = '';
-      this.aroma = '';
-      this.taste = '';
-      this.afterTaste = '';
-      this.whiskeyWeight = '';
-      this.whiskeyPrice = null;
-      this.whiskeyVideoLink = '';
+    this.whiskeyUrlName = '';
+    this.whiskeyTitleDescription = ''
+    this.whiskeyDescription = '';
+    this.whiskeyTitleImage = '';
+    this.whiskeyBlogImage = '';
+    this.aroma = '';
+    this.taste = '';
+    this.afterTaste = '';
+    this.whiskeyWeight = '';
+    this.whiskeyPrice = null;
+    this.whiskeyVideoLink = '';
   }
-
 }

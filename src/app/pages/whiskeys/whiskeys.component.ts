@@ -28,5 +28,4 @@ export class WhiskeysComponent implements OnInit {
       this.whiskeys = data;
     });
   }
-
 }

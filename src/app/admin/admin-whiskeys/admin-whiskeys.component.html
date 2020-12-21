@@ -1,65 +1,92 @@
 <h1>Whiskeys</h1>
 <form class="form">
     <div class="form-group">
-        <label for="whiskeyName">Name: </label>
-        <input [(ngModel)]="whiskeyName" name="whiskeyName" type="text" class="form-control" id="whiskeyName">
+        <div class="form-group__inner">
+            <label for="whiskeyName">Name: </label>
+            <input [(ngModel)]="whiskeyName" name="whiskeyName" type="text" class="form-control" id="whiskeyName">
+        </div>
+
+        <div class="form-group__inner">
+            <label for="whiskeyUrlName">URL name: </label>
+            <input [(ngModel)]="whiskeyUrlName" name="whiskeyUrlName" type="text" class="form-control"
+                id="whiskeyUrlName">
+        </div>
+
+        <div class="form-group__inner">
+            <label for="whiskeyTitleDescription"> Title of description: </label>
+            <input [(ngModel)]="whiskeyTitleDescription" name="whiskeyTitleDescription" type="text" class="form-control"
+                id="whiskeyTitleDescription">
+        </div>
     </div>
 
     <div class="form-group">
-        <label for="whiskeyUrlName">URL name: </label>
-        <input [(ngModel)]="whiskeyUrlName" name="whiskeyUrlName" type="text" class="form-control" id="whiskeyUrlName">
+        <div class="form-group__inner">
+            <label for="whiskeyDescription"> Description: </label>
+            <textarea [(ngModel)]="whiskeyDescription" name="whiskeyDescription" class="form-control"
+                type="text"></textarea>
+        </div>
     </div>
 
     <div class="form-group">
-        <label for="whiskeyTitleDescription"> Title of description: </label>
-        <input [(ngModel)]="whiskeyTitleDescription" name="whiskeyTitleDescription" type="text" class="form-control"
-            id="whiskeyTitleDescription">
+        <div class="form-group__inner">
+            <label for="">Title image:</label>
+            <div class="custom-file">
+                <input (change)="uploadFileTitle($event)" type="file" class="custom-file-input" id="urlImage" required>
+                <label class="custom-file-label" for="urlImage">Choose file...</label>
+            </div>
+            <div class="progress mt-3 mb-3">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                    [style.width]="(uploadProgressTitle | async) + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group w-100">
-        <label for="whiskeyDescription"> Description: </label>
-        <textarea [(ngModel)]="whiskeyDescription" name="whiskeyDescription" class="form-control" type="text" cols="80"
-            rows="2"></textarea>
+    <div class="form-group">
+        <div class="form-group__inner">
+            <label for="">Blog image:</label>
+            <div class="custom-file">
+                <input (change)="uploadFileBlog($event)" type="file" class="custom-file-input" id="urlBlogImage"
+                    required>
+                <label class="custom-file-label" for="urlBlogImage">Choose file...</label>
+            </div>
+            <div class="progress mt-3 mb-3">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                    [style.width]="(uploadProgressBlog | async) + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="custom-file">
-        <input (change)="uploadFile($event)" type="file" class="custom-file-input" id="urlImage" required>
-        <label class="custom-file-label" for="urlImage">Choose file...</label>
-    </div>
-    <div class="progress mt-3 mb-3">
-        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-            [style.width]="(uploadProgress | async) + '%'" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-
-    <div class="row justify-content-around w-100">
-        <div class="form-group">
+    <div class="form-group">
+        <div class="form-group__inner">
             <label for="aroma">Aroma: </label>
             <input [(ngModel)]="aroma" name="aroma" type="text" class="form-control" id="aroma">
         </div>
-        <div class="form-group">
+        <div class="form-group__inner">
             <label for="taste">Taste: </label>
             <input [(ngModel)]="taste" name="taste" type="text" class="form-control" id="taste">
         </div>
-        <div class="form-group">
+        <div class="form-group__inner">
             <label for="afterTaste">Aftertaste: </label>
             <input [(ngModel)]="afterTaste" name="afterTaste" type="text" class="form-control" id="afterTaste">
         </div>
     </div>
 
     <div class="form-group">
-        <label for="whiskeyWeight">Weight: </label>
-        <input [(ngModel)]="whiskeyWeight" name="whiskeyWeight" type="text" class="form-control" id="whiskeyWeight">
-    </div>
+        <div class="form-group__inner">
+            <label for="whiskeyWeight">Weight: </label>
+            <input [(ngModel)]="whiskeyWeight" name="whiskeyWeight" type="text" class="form-control" id="whiskeyWeight">
+        </div>
 
-    <div class="form-group">
-        <label for="whiskeyPrice">Price: </label>
-        <input [(ngModel)]="whiskeyPrice" name="whiskeyPrice" type="number" class="form-control" id="whiskeyPrice">
-    </div>
+        <div class="form-group__inner">
+            <label for="whiskeyPrice">Price: </label>
+            <input [(ngModel)]="whiskeyPrice" name="whiskeyPrice" type="number" class="form-control" id="whiskeyPrice">
+        </div>
 
-    <div class="form-group">
-        <label for="whiskeyVideoLink"> Link of video: </label>
-        <input [(ngModel)]="whiskeyVideoLink" name="whiskeyVideoLink" type="text" class="form-control"
-            id="whiskeyVideoLink">
+        <div class="form-group__inner">
+            <label for="whiskeyVideoLink"> Link of video: </label>
+            <input [(ngModel)]="whiskeyVideoLink" name="whiskeyVideoLink" type="text" class="form-control"
+                id="whiskeyVideoLink">
+        </div>
     </div>
 
     <div class="form-group row w-100">
@@ -88,13 +115,13 @@
             <td>{{ whiskey.description }}</td>
             <td>{{ whiskey.price }}</td>
             <td>
-                <img [attr.src]="whiskey?.image" style="width: 100px;" alt="">
+                <img [attr.src]="whiskey?.imageTitle" style="width: 100px;" alt="">
             </td>
             <td>
-                <button class="btn btn-warning" (click)="editProduct(whiskey)">edit</button>
+                <button class="btn btn-warning" (click)="editProduct(whiskey)">Edit</button>
             </td>
             <td>
-                <button class="btn btn-danger" (click)="deleteProduct(whiskey)">delete</button>
+                <button class="btn btn-danger" (click)="deleteProduct(whiskey)">Delete</button>
             </td>
         </tr>
     </tbody>

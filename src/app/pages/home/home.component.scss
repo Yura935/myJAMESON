@@ -80,7 +80,8 @@
         }
 
         .img3 {
-          background-image: url('../../../assets/images/heroLandscape_2.jpeg');        }
+          background-image: url('../../../assets/images/heroLandscape_2.jpeg');
+        }
 
         &__tag {
           background-color: #fff;
@@ -129,6 +130,7 @@
           cursor: $linkCursor;
           text-transform: uppercase;
           font-weight: 600;
+          margin-bottom: 20px;
         }
       }
     }

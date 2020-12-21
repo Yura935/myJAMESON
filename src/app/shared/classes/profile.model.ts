@@ -11,7 +11,7 @@ export class Profile implements IProfile {
         public street: string = '',
         public house: string = '',
         public orders: Array<IOrder> = [],
-    ){
+    ) {
         this.role = 'user';
     }
 }

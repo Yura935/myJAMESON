@@ -24,11 +24,13 @@ const routes: Routes = [
   { path: 'our-drinks/:name', component: DrinkDetailsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard] },
-  { path: 'admin', component: AdminComponent, children: [
-    { path: '', pathMatch: 'full', redirectTo: 'whiskeys' },
-    { path: 'whiskeys', component: AdminWhiskeysComponent },
-    { path: 'drinks', component: AdminDrinksComponent },
-  ] },
+  {
+    path: 'admin', component: AdminComponent, children: [
+      { path: '', pathMatch: 'full', redirectTo: 'whiskeys' },
+      { path: 'whiskeys', component: AdminWhiskeysComponent },
+      { path: 'drinks', component: AdminDrinksComponent },
+    ]
+  },
   { path: '**', component: HomeComponent },
 ];
 

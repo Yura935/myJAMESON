@@ -35,7 +35,8 @@
       margin: 6px 0;
       transition: 0.4s;
     }
-    &:focus{
+
+    &:focus {
       outline: none;
     }
   }
@@ -62,7 +63,6 @@
   height: 50px;
   cursor: pointer;
 }
-
 
 .img:focus {
   outline: none;
@@ -122,6 +122,37 @@
     line-height: 48px;
     list-style: none;
 
+    .basket {
+      display: inline-block;
+      position: relative;
+
+      &-link {
+        width: 100%;
+        height: 100%;
+        display: block;
+        cursor: pointer;
+
+        img {
+          width: 35px;
+          height: 35px;
+          display: table;
+          margin: 15px auto -18px;
+        }
+
+        .basketPrice {
+          color: $textColor;
+          text-align: center;
+
+          i {
+            font-size: 14px;
+            display: inline-block;
+            vertical-align: bottom;
+            font-style: normal;
+          }
+        }
+      }
+    }
+
     li {
       padding: 0 18px;
 
@@ -139,7 +170,8 @@
         border-bottom: $baseBorder;
         border-color: salmon;
       }
-      a::after{
+
+      a::after {
         content: '';
         background-color: salmon;
         height: 2px;
@@ -148,7 +180,8 @@
         bottom: -2px;
         left: 0;
       }
-      a:hover::after{
+
+      a:hover::after {
         transition: width 300ms linear;
         width: 100%;
       }
@@ -161,7 +194,6 @@ header .admin-block a {
   top: 100px;
   right: 0;
   padding: 10px;
-  font-family: "Comfortaa", serif;
   border: 1px solid #c80000;
   font-size: 15px;
   line-height: 16px;
@@ -172,12 +204,13 @@ header .admin-block a {
   transition-duration: 0.5s;
   text-decoration: none;
   z-index: 1;
+
   &:hover {
     padding: 10px 20px 10px 10px;
   }
 }
 
-.modalI-all{
+.modalI-all {
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, .7);
@@ -333,7 +366,6 @@ header .admin-block a {
       font-size: 54px;
       line-height: 67px;
     }
-
   }
 
   header .admin-block a {
@@ -341,11 +373,11 @@ header .admin-block a {
     padding: 20px;
     font-size: 20px;
     line-height: 18px;
+
     &:hover {
       padding: 20px 30px 20px 20px;
     }
   }
-  
 }
 
 @media screen and (max-width: 576px) {
@@ -448,7 +480,9 @@ header .admin-block a {
     padding: 10px;
     font-size: 16px;
     line-height: 15px;
+
     &:hover {
       padding: 10px 20px 10px 10px;
-    }}
+    }
+  }
 }

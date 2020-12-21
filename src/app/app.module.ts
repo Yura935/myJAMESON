@@ -23,6 +23,7 @@ import { AdminDrinksComponent } from './admin/admin-drinks/admin-drinks.componen
 import { ProfileComponent } from './pages/profile/profile.component';
 import { WhiskeyDetailsComponent } from './pages/whiskey-details/whiskey-details.component';
 import { DrinkDetailsComponent } from './pages/drink-details/drink-details.component';
+import { SearchPipe } from './shared/pipes/search.pipe';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { DrinkDetailsComponent } from './pages/drink-details/drink-details.compo
     AdminDrinksComponent,
     ProfileComponent,
     WhiskeyDetailsComponent,
-    DrinkDetailsComponent
+    DrinkDetailsComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

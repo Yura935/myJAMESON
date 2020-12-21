@@ -1,1 +1,222 @@
-<p>admin-drinks works!</p>
+<h1>Drinks</h1>
+<form class="form">
+
+    <div class="form-group">
+        <div class="form-group__inner">
+            <label for="drinkName">Name: </label>
+            <input [(ngModel)]="drinkName" name="drinkName" type="text" class="form-control" id="drinkName">
+        </div>
+
+        <div class="form-group__inner">
+            <label for="drinkUrlName">URL name: </label>
+            <input [(ngModel)]="drinkUrlName" name="drinkUrlName" type="text" class="form-control" id="drinkUrlName">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group__inner">
+            <label for="drinkDescription"> Description: </label>
+            <textarea [(ngModel)]="drinkDescription" name="drinkDescription" class="form-control"
+                type="text"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group__inner">
+            <label for="">Title image:</label>
+            <div class="custom-file">
+                <input (change)="uploadFileTitle($event)" type="file" class="custom-file-input" id="urlTitleImage"
+                    required>
+                <label class="custom-file-label" for="urlTitleImage">Choose file...</label>
+            </div>
+            <div class="progress mt-3 mb-3">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                    [style.width]="(uploadProgressTitle | async) + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group__inner">
+            <label for="">Blog image:</label>
+            <div class="custom-file">
+                <input (change)="uploadFileBlog($event)" type="file" class="custom-file-input" id="urlBlogImage"
+                    required>
+                <label class="custom-file-label" for="urlBlogImage">Choose file...</label>
+            </div>
+            <div class="progress mt-3 mb-3">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                    [style.width]="(uploadProgressBlog | async) + '%'" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group__inner addItems">
+            <label>Add ingredient:</label>
+            <button type="button" (click)="openModalIngredients()" class="btn but btn-primary">ADD</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="w-50">Ingredient</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let int of ingredients; let i=index">
+                <td>{{ i+1 }}</td>
+                <td>
+                    {{ int }}
+                </td>
+                <td>
+                    <button class="btn btn-warning" (click)="editIngredient(i)">Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deleteIngredient(i)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <div class="form-group__inner addItems">
+            <label>Add preparation:</label>
+            <button type="button" (click)="openModalPreparations()" class="btn but btn-primary">ADD</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="w-50">Step</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let step of preparation; let i=index">
+                <td>{{ i+1 }}</td>
+                <td>
+                    {{ step }}
+                </td>
+                <td>
+                    <button class="btn btn-warning" (click)="editPreparation(i)">Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="deletePreparation(i)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <section class="modalI-all" [style.background]="bgI" [style.top]="topLgI">
+        <div class="modalI" [style.top]="topI">
+            <div class="modalI-close">
+                <div class="modalI-close__but" (click)="modalDel()">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                </div>
+            </div>
+            <div class="modalI-head">
+                <div class="modalI-head__title">Add ingredient!</div>
+            </div>
+            <div class="modalI-body">
+                <div class="modalI-body__box">
+                    <label for="ingredient">Ingredient:</label>
+                    <input type="text" [(ngModel)]="ingredient" name="ingredient" id="ingredient"
+                        placeholder="Please enter ingredient">
+                </div>
+            </div>
+            <div class="modalI-button">
+                <div class="button__inner dismis" (click)="modalDel()">Dismiss</div>
+                <div class="button__inner" *ngIf="!checkI" (click)="addIngredient()">Add</div>
+                <div class="button__inner" *ngIf="checkI" (click)="updateIngredient()">Save</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="modalI-all" [style.background]="bgP" [style.top]="topLgP">
+        <div class="modalI" [style.top]="topP">
+            <div class="modalI-close">
+                <div class="modalI-close__but" (click)="modalDel()">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                </div>
+            </div>
+            <div class="modalI-head">
+                <div class="modalI-head__title">Add preparation!</div>
+            </div>
+            <div class="modalI-body">
+                <div class="modalI-body__box">
+                    <label for="step">Preparation:</label>
+                    <input type="text" [(ngModel)]="step" name="step" id="step" placeholder="Please enter preparation">
+                </div>
+            </div>
+            <div class="modalI-button">
+                <div class="button__inner dismis" (click)="modalDel()">Dismiss</div>
+                <div class="button__inner" *ngIf="!checkS" (click)="addPreparation()">Add</div>
+                <div class="button__inner" *ngIf="checkS" (click)="updatePreparation()">Save</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="form-group">
+        <div class="form-group__inner">
+            <label for="drinkWeight">Weight: </label>
+            <input [(ngModel)]="drinkWeight" name="drinkWeight" type="text" class="form-control" id="drinkWeight">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group__inner">
+            <label for="drinkPrice">Price: </label>
+            <input [(ngModel)]="drinkPrice" name="drinkPrice" type="number" class="form-control" id="drinkPrice">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-group__inner add">
+            <button type="button" *ngIf="!editStatus" (click)="addProduct()" class="btn but btn-primary">ADD</button>
+            <button type="button" *ngIf="editStatus" (click)="updateProduct()" class="btn but btn-info">Save</button>
+        </div>
+    </div>
+</form>
+
+<hr>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let drink of drinks; let i=index">
+            <td>{{ i+1 }}</td>
+            <td>{{ drink.name }}</td>
+            <td>{{ drink.description }}</td>
+            <td>{{ drink.price }}</td>
+            <td>
+                <img [attr.src]="drink?.imageTitle" style="width: 100px;" alt="">
+            </td>
+            <td>
+                <button class="btn btn-warning" (click)="editProduct(drink)">edit</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteProduct(drink)">delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

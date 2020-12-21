@@ -143,6 +143,7 @@
           font-size: 1rem;
           text-transform: uppercase;
           font-weight: 600;
+          margin-bottom: 20px;
 
           a:hover {
             text-decoration: underline;
@@ -229,6 +230,7 @@
 @media screen and (max-width: 576px) {
   .history {
     width: 100%;
+
     .container {
       padding: 0 20px;
 
@@ -259,6 +261,7 @@
 
       .blog {
         margin-top: 30px;
+
         &-info {
           padding: 0;
 

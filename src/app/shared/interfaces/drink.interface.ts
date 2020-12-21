@@ -9,5 +9,5 @@ export interface IDrink {
     preparation: Array<string>;
     weight: string;
     price: number;
-    count?: number;    
+    count?: number;
 }

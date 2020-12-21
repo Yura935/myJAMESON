@@ -15,12 +15,14 @@
             <div class="whiskey-info__title">
                 <h2>Тричі дистильований, дивовижно м'який віскі Jameson, який ні з чим не можна сплутати.</h2>
             </div>
+
             <div class="whiskey-info__text">
                 <p>Наша сім'я, як і будь-яка інша, є поєднанням різних характерів. І хоча кожен її член має свою
                     індивідуальність, всі вони є частиною сім'ї Jameson, головна риса якої — чудовий смак. Тепер, коли
                     ми розпалили у вас апетит, дозвольте нам втамувати вашу спрагу.
                 </p>
             </div>
+
             <div class="link-details">
                 <a [routerLink]="[ '/history' ]">Дізнайтеся більше про наш віскі</a>
             </div>
@@ -35,7 +37,7 @@
                 <div class="product-card" *ngFor="let whiskey of whiskeys">
                     <div class="product-card__inner">
                         <a [routerLink]="[ '/our-whiskeys/' +whiskey.urlName ]">
-                            <div class="card-img" [style.backgroundImage]="'url('+whiskey.image+')'"></div>
+                            <div class="card-img" [style.backgroundImage]="'url('+whiskey.imageTitle+')'"></div>
                             <div class="card-prod">
                                 <h3 class="card-prod-text">{{ whiskey.name }}</h3>
                             </div>

@@ -14,7 +14,7 @@ export class Order implements IOrder {
         public house: string,
         public totalPrice: number,
         public comments: string = '',
-    ){
+    ) {
         this.date = new Date();
     }
 }

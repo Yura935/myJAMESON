@@ -1,1 +1,58 @@
-<p>drinks works!</p>
+<section class="drinks">
+    <div class="drinks-slider">
+        <div class="drinks-slider_id" [style.backgroundImage]="'url('+randImg+')'"></div>
+    </div>
+    <div class="container-fluid">
+        <div class="drinks-title">
+            <h1 class="drinks-title-head">Коктейлі з Jameson</h1>
+        </div>
+
+        <div class="drink-details">
+            <a [routerLink]="[ '/our-drinks/' + randID ]">Здивуйте мене</a>
+        </div>
+
+        <div class="drink-info">
+            <div class="drink-info__title">
+                <h2>Знайдіть коктейль, приготуйте коктейль, скуштуйте коктейль.</h2>
+            </div>
+
+            <div class="drink-info__text">
+                <p>Шукаєте найкращі коктейлі з віскі та рецепти, котрі можна буде приготувати з особливої нагоди чи
+                    просто пригостити ними своїх друзів? Навіть якщо сьогодні лише четвер? Можете більше не шукати — ми
+                    підготували список, який допоможе вам дізнатись, як пити віскі в стилі Jameson. Від класичних до
+                    експериментальних рецептів та наших улюблених коктейлів — ви неодмінно знайдете те, що припаде вам
+                    до смаку. Заходьте, віскі — це чудово.
+                </p>
+            </div>
+
+            <div class="drink-info__search">
+                <div class="link-details">
+                    <a (click)="editStatus()" [style.color]='color' [style.backgroundColor]="bgColor">Знайти</a>
+                </div>
+
+                <div class="search" *ngIf="check">
+                    <input type="text" [(ngModel)]="searchName" name="searchName" placeholder="Search your drink:)">
+                </div>
+            </div>
+        </div>
+
+        <div class="products">
+            <div class="products-title">
+                <div class="products-title__inner">Наші коктейлі</div>
+            </div>
+
+            <div class="products-drinks">
+                <div class="product-card" *ngFor="let drink of drinks | search: searchName">
+                    <div class="product-card__inner">
+                        <a [routerLink]="[ '/our-drinks/' +drink.urlName ]">
+                            <div class="card-img" [style.backgroundImage]="'url(' +drink.imageTitle+ ')'"></div>
+                            <div class="card-prod">
+                                <h3 class="card-prod-text">{{ drink.name }}</h3>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

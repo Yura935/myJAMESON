@@ -1,23 +1,42 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/mixins';
 
-.form{
-    @include flexbox(space-around, center, row, wrap);
+.form {
+  @include flexbox(space-around, center, row, wrap);
 }
 
-h1{
-    font-size: 55px;
-    line-height: 65px;
+h1 {
+  font-size: 55px;
+  line-height: 65px;
 }
 
-input{
-    width: 320px;
+.but {
+  width: 100%;
 }
 
-.but{
+textarea {
+  resize: none;
+}
+
+.form-group {
+  width: 100%;
+  @include flexbox(space-between, center, row, nowrap);
+}
+
+.form-group__inner {
+  width: 100%;
+  @include flexbox(normal, normal, column, nowrap);
+  margin-bottom: 10px;
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  input {
+    width: 97%;
+  }
+
+  textarea {
     width: 100%;
-}
-
-textarea{
-    resize: none;
+  }
 }

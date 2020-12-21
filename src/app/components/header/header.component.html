@@ -28,6 +28,14 @@
                 <li *ngIf="onLine">
                     <img class="img" src="../../../assets/images/avatar.svg" [routerLink]="[ '/profile' ]" alt="">
                 </li>
+                <li class="basket">
+                    <div class="basket-link">
+                        <img src="../../../assets/images/icon-cart.svg" alt="shopping-cart">
+                        <span class="basketPrice">
+                            <i>{{ totalPrice }} грн</i>
+                        </span>
+                    </div>
+                </li>
                 <li *ngIf="onLine">
                     <a (click)="signOut()">Вийти</a>
                 </li>
@@ -35,7 +43,7 @@
         </div>
         <div class="admin-block">
             <a [routerLink]="[ '/admin' ]">Admin</a>
-          </div>
+        </div>
     </nav>
 
     <div class="navbar-collapse" [style.left]="left">
@@ -55,6 +63,9 @@
             <li *ngIf="!onLine">
                 <a (click)="openModal()">Увійти</a>
             </li>
+            <li>
+                <a>Кошик</a>
+            </li>
             <li *ngIf="onLine">
                 <a [routerLink]="[ '/profile' ]">Профіль</a>
             </li>
@@ -69,30 +80,40 @@
                     <div class="line2"></div>
                 </div>
             </div>
+
             <div class="modalI-head">
                 <div class="modalI-head__title" *ngIf="checkLog">Log IN</div>
                 <div class="modalI-head__title" *ngIf="!checkLog"> Create your account! </div>
             </div>
+
             <div class="modalI-body">
                 <div class="modalI-body__box">
                     <div class="box-input">
                         <label for="login">Login:</label>
-                        <input type="email" [(ngModel)]="userEmail" name="userEmail" id="login" placeholder="Please enter your email">
+                        <input type="email" [(ngModel)]="userEmail" name="userEmail" id="login"
+                            placeholder="Please enter your email">
                     </div>
+
                     <div class="box-input">
                         <label for="password">Password:</label>
-                        <input type="password" [(ngModel)]="userPass" name="userPass" id="password" placeholder="Please enter your pass">
+                        <input type="password" [(ngModel)]="userPass" name="userPass" id="password"
+                            placeholder="Please enter your pass">
                     </div>
+
                     <div class="box-input" *ngIf="!checkLog">
                         <label for="name">User name:</label>
-                        <input type="text" [(ngModel)]="userName" name="userName" id="name" placeholder="Please enter your name">
+                        <input type="text" [(ngModel)]="userName" name="userName" id="name"
+                            placeholder="Please enter your name">
                     </div>
+
                     <div class="box-input" *ngIf="!checkLog">
                         <label for="phone">Phone:</label>
-                        <input type="text" [(ngModel)]="userPhone" name="userPhone"  id="phone" placeholder="Please enter your phone">
+                        <input type="text" [(ngModel)]="userPhone" name="userPhone" id="phone"
+                            placeholder="Please enter your phone">
                     </div>
                 </div>
             </div>
+
             <div class="modalI-button">
                 <div class="button__inner" *ngIf="checkLog" (click)="signIn()">Sign IN</div>
                 <div class="button__inner" *ngIf="!checkLog" (click)="signUp()">Sign UP</div>
