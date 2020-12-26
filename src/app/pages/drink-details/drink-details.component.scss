@@ -190,63 +190,14 @@
     margin-bottom: 50px;
     @include flexbox(normal, center, column, nowrap);
 
-    &-counter {
-      width: 100%;
-      @include flexbox(normal, center, row, wrap);
-      margin-bottom: 10px;
-
-      &__weight {
-        font-size: 22px;
-        margin-left: auto;
-      }
-
-      &__title {
-        padding-right: 8px;
-        font-size: 22px;
-        font-weight: 600;
-        margin-left: 120px;
-      }
-
-      &__box {
-        position: relative;
-        padding: 0 25px;
-        margin-right: auto;
-      }
-    }
-
-    &-price {
-      width: 100%;
-      @include flexbox(normal, center, row, wrap);
-
-      &__inner {
-        @include flexbox(normal, center, row, wrap);
-        margin: 0 auto;
-        margin-bottom: 20px;
-
-        p {
-          font-weight: 600;
-          font-size: 22px;
-          padding-right: 5px;
-        }
-
-        .productPrice {
-          font-size: 22px;
-          padding-right: 5px;
-        }
-
-        i {
-          font-size: 22px;
-        }
-      }
-    }
-
     &-button {
-      width: 20%;
+      width: 100%;
       cursor: pointer;
       @include flexbox(normal, center, row, wrap);
+      margin-bottom: 15px;
 
       .button-order {
-        width: 100%;
+        width: 30%;
         height: 100%;
         background-color: #c80000;
         color: $textColor;
@@ -255,6 +206,7 @@
         text-align: center;
         font-weight: 700;
         line-height: 38px;
+        margin: 0 auto;
         transition: background-color 0.2s linear, color 0.2s linear, border 0.2s linear;
       }
 
@@ -263,73 +215,6 @@
         color: #c80000;
       }
     }
-  }
-
-  .productCount {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    transform: translateY(-50%);
-    cursor: pointer;
-  }
-
-  .moreProduct {
-    left: auto;
-    right: 0;
-  }
-
-  .lessProduct::before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 10px;
-    height: 2px;
-    margin-top: -1px;
-    margin-left: -5px;
-    background: #c80000;
-    transition: background 0.25s linear;
-    content: "";
-  }
-
-  .counter {
-    font-size: 16px;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 38px;
-    font-weight: 500;
-    padding: 0 6px;
-    font-family: "Roboto";
-    border: 1px solid #eaeaea;
-  }
-
-  .moreProduct::before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 10px;
-    height: 2px;
-    margin-top: -1px;
-    margin-left: -5px;
-    background: #c80000;
-    transition: background 0.25s linear;
-    content: "";
-  }
-
-  .moreProduct::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 10px;
-    height: 2px;
-    margin-top: -1px;
-    margin-left: -5px;
-    background: #c80000;
-    transition: background 0.25s linear;
-    content: "";
-    transform: rotate(-90deg);
   }
 }
 
@@ -459,27 +344,6 @@
         }
       }
     }
-
-    .productCount {
-      width: 25px;
-      height: 25px;
-    }
-
-    .lessProduct::before {
-      height: 3px;
-    }
-
-    .counter {
-      font-size: 18px;
-    }
-
-    .moreProduct::before {
-      height: 3px;
-    }
-
-    .moreProduct::after {
-      height: 3px;
-    }
   }
 }
 
@@ -594,33 +458,6 @@
           width: 100%;
         }
       }
-    }
-
-    .productCount {
-      width: 35px;
-      height: 35px;
-    }
-
-    .lessProduct::before {
-      height: 5px;
-      width: 15px;
-    }
-
-    .counter {
-      font-size: 20px;
-      height: 50px;
-      width: 50px;
-      line-height: 50px;
-    }
-
-    .moreProduct::before {
-      height: 5px;
-      width: 15px;
-    }
-
-    .moreProduct::after {
-      height: 5px;
-      width: 15px;
     }
   }
 }

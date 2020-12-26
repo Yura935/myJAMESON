@@ -6,9 +6,9 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 15vh;
+  height: 12vh;
   width: 100%;
-  z-index: 1030;
+  z-index: 1000;
   padding: 0 40px 0;
   margin: 0 auto 0;
   @include flexbox(flex-start, center, row, wrap);
@@ -210,6 +210,451 @@ header .admin-block a {
   }
 }
 
+.basketModal {
+  width: 50%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2000;
+  min-width: 200px;
+  background-image: url('../../../assets/images/bgBasket.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  transition: 0.5s right;
+
+  .basketOpen {
+    width: 100%;
+    height: 100%;
+    padding: 0 20px 20px;
+    color: crimson;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .basket-empty {
+      width: 100%;
+      height: 300px;
+
+      &__head {
+        width: 100%;
+        position: relative;
+        padding-top: 77px;
+
+        .head--title {
+          position: relative;
+          font-size: 32px;
+          font-weight: bold;
+          line-height: 1.5;
+          text-align: center;
+          text-transform: none;
+          border: 2px solid black;
+          box-shadow: 0 0 10px 3px black;
+          margin-left: 0;
+          margin-bottom: 20px;
+        }
+
+        .head--title::after {
+          content: '';
+          height: 1px;
+          width: 80%;
+          position: absolute;
+          bottom: 0;
+          left: 40px;
+          border-bottom: 1px solid gray;
+        }
+
+        .head--close {
+          height: 70px;
+          width: 70px;
+          position: absolute;
+          top: 35px;
+          right: 10px;
+          padding: 15px 10px 15px 20px;
+          margin-top: -20px;
+          margin-right: -15px;
+          line-height: 10px;
+          cursor: $linkCursor;
+
+          .line1,
+          .line2 {
+            width: 30px;
+            height: 3px;
+            background-color: crimson;
+            margin: 5px;
+            border-radius: 5px;
+          }
+
+          .line1 {
+            transform: rotate(-45deg) translate(-10px, 10px);
+          }
+
+          .line2 {
+            transform: rotate(45deg) translate(4px, 4px);
+          }
+        }
+      }
+
+      &__box {
+        width: 100%;
+        padding: 30px 50px;
+        position: relative;
+
+        .box--text {
+          padding: 20px 0;
+          font-size: 24px;
+          font-weight: 600;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        a.box--link {
+          font-size: 20px;
+          font-weight: 500;
+          color: crimson;
+          margin-left: 32%;
+        }
+      }
+    }
+
+    .basket-content {
+      width: 100%;
+      height: 70%;
+
+      &__head {
+        width: 100%;
+        position: relative;
+        padding-top: 25px;
+
+        .head--title {
+          position: relative;
+          font-size: 32px;
+          font-weight: bold;
+          line-height: 1.5;
+          text-align: center;
+          text-transform: none;
+          padding-bottom: 35px;
+          margin-left: 0;
+          margin-bottom: 20px;
+        }
+      }
+
+      &__close {
+        height: 70px;
+        width: 70px;
+        position: absolute;
+        top: 35px;
+        right: 15px;
+        padding: 15px 10px 15px 20px;
+        z-index: 1;
+        margin-top: -20px;
+        line-height: 10px;
+        cursor: $linkCursor;
+
+        .line1,
+        .line2 {
+          width: 30px;
+          height: 3px;
+          background-color: crimson;
+          margin: 5px;
+          border-radius: 5px;
+        }
+
+        .line1 {
+          transform: rotate(-45deg) translate(-10px, 10px);
+        }
+
+        .line2 {
+          transform: rotate(45deg) translate(4px, 4px);
+        }
+      }
+
+      &__order {
+        margin-top: 30px;
+
+        table {
+          width: 100%;
+          max-height: 100%;
+          border-collapse: collapse;
+          margin-bottom: 15px;
+          color: maroon;
+
+          tbody {
+            tr {
+              text-align: center;
+
+              td {
+                padding: 10px 5px;
+                vertical-align: top;
+                border-top: 1px solid #dee2e6;
+                line-height: 73px;
+                font-size: 20px;
+                font-weight: 800;
+              }
+
+              td.Del {
+                line-height: 0;
+              }
+
+              .icon {
+                height: 80px;
+                width: 80px;
+                margin: 0px auto;
+                display: flex;
+              }
+
+              .remove {
+                color: #dc3545;
+                font-weight: 700;
+                cursor: $linkCursor;
+              }
+
+              .counter {
+                @include flexbox(space-around, center, row, nowrap);
+                width: 135px;
+                margin: 20px auto;
+
+                .count {
+                  width: 40px;
+                  height: 40px;
+                  padding: 13px;
+                  background-color: transparent;
+                  border: none;
+                  color: maroon;
+                  font-weight: 600;
+                  font-size: 22px;
+                }
+
+                .danger {
+                  background-color: #dd2033;
+                  color: #fefefe;
+                }
+
+                .danger:focus {
+                  box-shadow: 0 0 0 4px rgb(248, 95, 78);
+                }
+
+                .button {
+                  width: 37px;
+                  font-weight: 700;
+                }
+              }
+            }
+          }
+        }
+
+        .orderCheck {
+          width: 100%;
+
+          h2.totalPrice {
+            color: darkred;
+            text-align: left;
+            font-size: 40px;
+            margin-bottom: 15px;
+            font-weight: 700;
+          }
+
+          .order {
+            display: block;
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+            margin: 10px auto;
+
+            &:hover {
+              background-color: #218838;
+              border-color: #1e7e34;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.modalOrder {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: rgba(0, 0, 0, .7);
+  z-index: 2000;
+
+  &-in {
+    position: fixed;
+    width: 60%;
+    border-radius: 5px;
+    background-color: $mainColor;
+    margin: 0 auto;
+    top: 100px;
+    left: 20%;
+    z-index: 1;
+    transition: top 1s;
+
+    .modal-header {
+      h4 {
+        font-weight: 600;
+        font-size: 32px;
+        color: $textColor;
+      }
+
+      .close {
+        width: 55px;
+        height: 55px;
+        padding: 10px;
+        margin-right: -10px;
+        margin-top: -5px;
+        cursor: $linkCursor;
+        opacity: 1;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .close:focus {
+        outline: none
+      }
+    }
+
+    .modal-box {
+      @include flexbox(space-around, normal, column, nowrap);
+      padding: 10px;
+
+      &__block {
+        height: 40px;
+        @include flexbox(space-between, center, row, nowrap);
+        margin-bottom: 10px;
+
+        label {
+          font-size: 22px;
+          padding-left: 10px;
+          color: $textColor;
+        }
+
+        input,
+        textarea {
+          width: 50%;
+          height: 100%;
+          padding-left: 10px;
+          margin-right: 10px;
+          color: $textColor;
+          background-color: transparent;
+          border: none;
+          border-bottom: 1px solid salmon;
+        }
+
+        textarea {
+          padding-top: 5px;
+          resize: none;
+        }
+
+        .block--products {
+          width: 50%;
+          height: 100%;
+          @include flexbox(normal, normal, column, wrap);
+          padding: 10px 5px;
+
+          .product {
+            color: $textColor;
+          }
+        }
+      }
+
+      .bigBlock {
+        height: 60px;
+      }
+
+      .blockProduct {
+        height: auto;
+      }
+    }
+
+    hr {
+      margin: 10px 0;
+    }
+
+    .modal-buttons {
+      @include flexbox(flex-end, center, row, nowrap);
+      padding: 10px;
+
+      .btn-close {
+        width: 75px;
+        height: 45px;
+        background-color: rgb(109, 0, 0);
+        color: #ffffff;
+        border: 1px solid darkred;
+        border-radius: 3px;
+        margin: 5px;
+        padding: 0;
+      }
+
+      .btn-close:focus {
+        outline: none;
+      }
+
+      .btn-submit {
+        width: 115px;
+        height: 45px;
+        margin: 5px;
+        color: #ffffff;
+        background-color: salmon;
+        border: 1px solid rgb(252, 115, 100);
+      }
+    }
+  }
+}
+
+section.modalOut {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 2000;
+
+  .modal-buttons {
+    width: 30%;
+    height: 70px;
+    position: fixed;
+    background-color: #fff;
+    left: 35%;
+    padding: 10px;
+    border-radius: 5px;
+    transition: top 0.7s;
+    @include flexbox(space-around, center, row, nowrap);
+
+    .btn-out {
+      height: 40px;
+      width: 130px;
+      border-radius: 5px;
+      color: #fff;
+      background-color: #dc3545;
+      border-color: #dc3545;
+      outline: none;
+    }
+
+    .btn-out:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+
+    .btn-close {
+      height: 40px;
+      width: 130px;
+      border-radius: 5px;
+      color: #fff;
+      background-color: gray;
+      border-color: gray;
+      outline: none;
+    }
+
+    .btn-close:hover {
+      background-color: dimgray;
+      border-color: dimgray;
+    }
+  }
+}
+
 .modalI-all {
   width: 100%;
   height: 100vh;
@@ -296,6 +741,7 @@ header .admin-block a {
           height: 30px;
           background-color: rgba(0, 64, 39, 0);
           border: none;
+          color: $textColor;
           padding-left: 10px;
           border-bottom: 1px solid salmon;
         }
@@ -410,7 +856,7 @@ header .admin-block a {
     }
   }
 
-  .modal {
+  .modalI {
     width: 95%;
     left: 2.5%;
 

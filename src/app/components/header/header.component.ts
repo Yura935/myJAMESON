@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { IOrder } from 'src/app/shared/interfaces/order.interface';
+import { IWhiskey } from 'src/app/shared/interfaces/whiskey.interface';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +17,8 @@ export class HeaderComponent implements OnInit {
   transformB3: string = '0';
   checkLog: boolean = true;
   sign: string = 'Sign UP';
-  top: string = '-100%';
-  topLg: string = '-100%';
+  top: string = '-200%';
+  topLg: string = '-200%';
   bg: string = 'transparent';
   onLine: boolean = false;
   admin: boolean = false;
@@ -23,11 +26,34 @@ export class HeaderComponent implements OnInit {
   userPass: string;
   userName: string;
   userPhone: string;
+  userDate: string = new Date().toISOString().slice(0, 10);
+
+  topLgOrder: string = '-200%';
+  topOrder: string = '-200%';
+  bgOrder: string = 'transparent';
+
+  checkBasket: boolean = false;
+  displayBasket: string = 'none';
+  right: string = '-100%';
+
+  basket: Array<IWhiskey> = [];
   totalPrice: number = 0;
 
-  constructor(private authService: AuthService) { }
+  orders: Array<IOrder>;
+  userAdress: string;
+  userComment: string = '';
+  currentUser: any;
+  userOrder: any;
+
+  topOut: string = '-200%';
+  topLgOut: string = '-200%';
+  bgOut: string = 'transparent';
+
+  constructor(private authService: AuthService, private orderService: OrderService) { }
 
   ngOnInit(): void {
+    this.getLocalProducts();
+    this.checkMyBasket();
     this.checkLocalUser();
     this.checkUserLogin();
   }
@@ -69,10 +95,40 @@ export class HeaderComponent implements OnInit {
     this.check = !this.check;
   }
 
+  openOrderModal(): void {
+    this.topOrder = '5%';
+    this.topLgOrder = '0';
+    this.bgOrder = 'rgba(0, 0, 0, .7)';
+    this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.userName = this.currentUser.firstName;
+    this.userPhone = this.currentUser.phone;
+    this.userAdress = this.currentUser.adress;
+  }
+
+  openOutModal(): void {
+    this.topLgOut = '0';
+    this.topOut = '50%';
+    this.bgOut = 'rgba(0, 0, 0, .7)';
+  }
+
+  closeOutModal(): void {
+    this.topLgOrder = '-200%';
+    this.topOut = '-200%';
+    this.bgOut = 'transparent';
+  }
+
   modalDel(): void {
-    this.top = '-100%';
-    this.topLg = '-100%';
+    this.top = '-200%';
+    this.topLg = '-200%';
     this.bg = 'transparent';
+    this.left = '-100%';
+    this.transformB1 = 'rotate(0) translate(0,0)';
+    this.opacity = '1';
+    this.transformB3 = 'rotate(0) translate(0,0)';
+    this.topOrder = '-200%';
+    this.topLgOrder = '-200%';
+    this.bgOrder = 'transparent';
+    this.closeBasket();
   }
 
   private checkLocalUser(): void {
@@ -94,6 +150,120 @@ export class HeaderComponent implements OnInit {
     this.authService.checkSignIn.subscribe(() => {
       this.checkLocalUser();
     });
+  }
+
+  private checkMyBasket(): void {
+    this.orderService.basket.subscribe(
+      data => {
+        this.basket = data;
+        this.totalPrice = this.getTotal(this.basket);
+        this.checkBasket = true;
+      }
+    )
+  }
+
+  private getLocalProducts(): void {
+    if (localStorage.getItem('basket')) {
+      this.basket = JSON.parse(localStorage.getItem('basket'));
+      this.totalPrice = this.getTotal(this.basket);
+      if (this.basket.length > 0) {
+        this.checkBasket = true;
+      }
+      else {
+        this.checkBasket = false;
+      }
+    }
+  }
+
+  private getTotal(whiskeys: Array<IWhiskey>): number {
+    return whiskeys.reduce((total, prod) => total + (prod.price * prod.count), 0);
+  }
+
+  productCount(whiskey: IWhiskey, status: boolean): void {
+    if (status) {
+      whiskey.count++;
+    }
+    else {
+      if (whiskey.count > 1) {
+        whiskey.count--;
+      }
+    }
+    this.totalPrice = this.getTotal(this.basket);
+    this.orderService.basket.next(this.basket);
+    localStorage.setItem('basket', JSON.stringify(this.basket));
+  }
+
+  removeProduct(whiskey: IWhiskey): void {
+    if (confirm('Are you sure?')) {
+      const index = this.basket.findIndex(prod => prod.id === whiskey.id)
+      this.basket.splice(index, 1);
+      this.totalPrice = this.getTotal(this.basket);
+      this.orderService.basket.next(this.basket);
+      localStorage.setItem('basket', JSON.stringify(this.basket));
+      if (this.basket.length > 0) {
+        this.checkBasket = true;
+      }
+      else {
+        this.checkBasket = false;
+      }
+    }
+  }
+
+  addOrder(): void {
+    if (this.userName, this.userPhone, this.userAdress) {
+      if (this.basket.length > 0) {
+        this.userOrder =
+        {
+          products: this.basket,
+          firstName: this.userName,
+          adress: this.userAdress,
+          price: this.totalPrice,
+          comments: this.userComment,
+          date: this.userDate
+        };
+        this.orderService.create(this.userOrder)
+          .then(
+            () => {
+              console.log('Order added!');
+            }
+          )
+        if (localStorage.getItem('user')) {
+          this.currentUser = JSON.parse(localStorage.getItem('user'));
+          console.log(this.currentUser.orders);
+          if (typeof this.currentUser.orders != 'undefined') {
+            this.currentUser.orders.push(this.userOrder);
+            console.log(this.currentUser.orders);
+          }
+          else {
+            this.currentUser.orders = [];
+            this.currentUser.orders.push(this.userOrder);
+          }
+          localStorage.setItem('user', JSON.stringify(this.currentUser));
+          this.orderService.update(this.currentUser.id, this.currentUser).then(
+            () => {
+              this.basket = [];
+              localStorage.removeItem('basket');
+              this.orderService.basket.next(this.basket);
+              this.totalPrice = 0;
+              this.reset();
+            }
+          )
+        }
+        else {
+          this.orderService.create(this.userOrder).then(
+            () => {
+              this.basket = [];
+              localStorage.removeItem('basket');
+              this.orderService.basket.next(this.basket);
+              this.totalPrice = 0;
+              this.reset();
+            });
+        }
+      }
+    }
+    else {
+      alert('Please fill in the fields!')
+    }
   }
 
   signUp(): void {
@@ -124,6 +294,8 @@ export class HeaderComponent implements OnInit {
     this.authService.signOut();
     this.admin = false;
     this.onLine = false;
+    this.totalPrice = 0;
+    this.closeOutModal();
     this.reset();
   }
 
@@ -132,5 +304,16 @@ export class HeaderComponent implements OnInit {
     this.userPass = '';
     this.userName = '';
     this.userPhone = '';
+    this.userAdress = '';
+    this.userComment = '';
+    this.totalPrice = 0;
+  }
+
+  goToBasket(): void {
+    this.right = '0';
+  }
+
+  closeBasket(): void {
+    this.right = '-100%';
   }
 }

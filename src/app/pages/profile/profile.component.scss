@@ -1,0 +1,186 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+.profile {
+  width: 100%;
+  height: 80vh;
+  background-color: whitesmoke;
+
+  &-container {
+    padding: 0 60px;
+    margin-top: 12vh;
+
+    .profile-title {
+      width: 100%;
+      font-size: 32px;
+      font-weight: 700;
+      color: $mainColorText;
+      margin: 75px 0 10px;
+      text-transform: uppercase;
+    }
+
+    .profile-menu {
+      width: 100%;
+      height: 40px;
+      @include flexbox(normal, normal, row, nowrap);
+      padding: 5px;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+
+      &__link {
+        text-align: center;
+        cursor: pointer;
+        line-height: 28px;
+        font-weight: 500;
+        font-size: 18px;
+        color: $mainColorText;
+        padding: 0 10px;
+      }
+    }
+
+    .menu--info {
+      @include flexbox(normal, normal, row, nowrap);
+      width: 100%;
+      height: 100%;
+
+      .info--image {
+        @include flexbox(normal, normal, column, nowrap);
+        width: 30%;
+        height: auto;
+        min-height: 160px;
+
+        .file {
+          position: relative;
+          overflow: hidden;
+          display: inline-block;
+          width: 43%;
+          margin-left: 55px;
+        }
+
+        .btn {
+          border: 2px solid #78ffd6;
+          color: white;
+          background: #78ffd6;
+          background: linear-gradient(to right, #11998e, #38ef7d);
+          padding: 8px 20px;
+          border-radius: 8px;
+          font-size: 20px;
+          font-weight: bold;
+          transition: background .250s linear, color .250s linear, border .250s linear;
+          cursor: pointer;
+        }
+
+        img {
+          width: 250px;
+          height: 250px;
+          padding: 10px;
+          border-radius: 20px;
+        }
+
+        input[type=file] {
+          font-size: 100px;
+          width: 110px;
+          height: 50px;
+          position: absolute;
+          left: 0px;
+          top: 0;
+          opacity: 0;
+          cursor: pointer;
+        }
+      }
+
+      .info-block {
+        width: 70%;
+        height: 100%;
+
+        .info--title {
+          padding: 10px;
+          font-weight: 500;
+          font-size: 32px;
+          color: $mainColorText;
+        }
+
+        .info--box {
+          height: 30px;
+          @include flexbox(space-between, center, row, nowrap);
+          margin: 10px;
+
+          label {
+            color: $mainColorText;
+            font-size: 20px;
+            font-weight: 500;
+            margin-left: 20px;
+          }
+
+          input {
+            width: 50%;
+            height: 100%;
+            padding-left: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: .25rem;
+          }
+
+          input:focus {
+            box-shadow: 0 0 5px 3px rgb(78, 132, 248);
+          }
+
+          p {
+            width: 150px;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 500;
+            color: $mainColorText;
+          }
+        }
+
+        .info--button {
+          @include flexbox(flex-end, center, row, nowrap);
+
+          button {
+            width: 80px;
+            height: 40px;
+            background-color: forestgreen;
+            border: 1px solid forestgreen;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            margin-right: 10px;
+          }
+
+          .edit {
+            background-color: orange;
+            border: 1px solid orange;
+          }
+        }
+      }
+    }
+
+    .menu--orders {
+      width: 100%;
+      height: 100%;
+
+      h2 {
+        padding: 10px;
+        font-weight: 500;
+        font-size: 32px;
+        color: $mainColorText;
+      }
+
+      table {
+        text-align: center;
+        border: 2px solid #78ffd6;
+        color: white;
+        background: #78ffd6;
+        background: linear-gradient(to right, #00b09b, #96c93d);
+
+        thead {
+          th {
+            color: white;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}

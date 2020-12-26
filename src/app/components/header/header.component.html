@@ -5,9 +5,11 @@
             <div class="bar2" [style.opacity]="opacity"></div>
             <div class="bar3" [style.transform]="transformB3"></div>
         </button>
+
         <a class="navbar-brand" [routerLink]="[ '/home' ]">
             <span>JAMESON</span>
         </a>
+
         <div class="navbar-wrapper">
             <ul class="navbar-wrapper__nav">
                 <li>
@@ -28,7 +30,7 @@
                 <li *ngIf="onLine">
                     <img class="img" src="../../../assets/images/avatar.svg" [routerLink]="[ '/profile' ]" alt="">
                 </li>
-                <li class="basket">
+                <li class="basket" (click)="goToBasket()">
                     <div class="basket-link">
                         <img src="../../../assets/images/icon-cart.svg" alt="shopping-cart">
                         <span class="basketPrice">
@@ -37,7 +39,7 @@
                     </div>
                 </li>
                 <li *ngIf="onLine">
-                    <a (click)="signOut()">Вийти</a>
+                    <a (click)="openOutModal()">Вийти</a>
                 </li>
             </ul>
         </div>
@@ -49,28 +51,132 @@
     <div class="navbar-collapse" [style.left]="left">
         <ul class="navbar-collapse__nav">
             <li>
-                <a [routerLink]="[ '/home' ]">Головна</a>
+                <a (click)="modalDel()" [routerLink]="[ '/home' ]">Головна</a>
             </li>
             <li>
-                <a [routerLink]="[ '/our-whiskeys' ]">Віскі</a>
+                <a (click)="modalDel()" [routerLink]="[ '/our-whiskeys' ]">Віскі</a>
             </li>
             <li>
-                <a [routerLink]="[ '/our-drinks' ]">Коктейлі</a>
+                <a (click)="modalDel()" [routerLink]="[ '/our-drinks' ]">Коктейлі</a>
             </li>
             <li>
-                <a [routerLink]="[ '/contact' ]">Контакти</a>
+                <a (click)="modalDel()" [routerLink]="[ '/contact' ]">Контакти</a>
             </li>
             <li *ngIf="!onLine">
                 <a (click)="openModal()">Увійти</a>
             </li>
             <li>
-                <a>Кошик</a>
+                <a (click)="modalDel()">Кошик</a>
             </li>
             <li *ngIf="onLine">
-                <a [routerLink]="[ '/profile' ]">Профіль</a>
+                <a (click)="modalDel()" [routerLink]="[ '/profile' ]">Профіль</a>
             </li>
         </ul>
     </div>
+
+    <section class="basketModal" [style.right]="right">
+        <div class="basketOpen">
+            <div class="basket-empty" *ngIf="!checkBasket">
+                <div class="basket-empty__head">
+                    <h2 class="head--title">Your Cart</h2>
+                    <div class="head--close" (click)="modalDel()">
+                        <div class="line1"></div>
+                        <div class="line2"></div>
+                    </div>
+                </div>
+                <div class="basket-empty__box">
+                    <p class="box--text">Your Cart is Empty!</p>
+                    <a class="box--link" (click)="modalDel()" [routerLink]="[ '/our-whiskeys' ]">Please place an
+                        order</a>
+                </div>
+            </div>
+            <div class="basket-content" *ngIf="checkBasket">
+                <div class="basket-content__close" (click)="modalDel()">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                </div>
+                <div class="basket-content__head">
+                    <h2 class="head--title">Your Cart</h2>
+                </div>
+                <div class="basket-content__order">
+                    <table>
+                        <tbody>
+                            <tr *ngFor="let prod of basket; let i=index">
+
+                                <td scope="row"><img class="icon" [src]="prod.imageTitle"></td>
+                                <td scope="row">{{ prod.name }}</td>
+                                <td scope="row">{{ prod.price * prod.count }} грн</td>
+                                <td scope="row">
+                                    <div class="counter">
+                                        <button class="btn danger button" (click)="productCount(prod, false)">-</button>
+                                        <input type="text" class="count" max-lenght="3" [value]="prod.count">
+                                        <button class="btn btn-success button"
+                                            (click)="productCount(prod, true)">+</button>
+                                    </div>
+                                </td>
+                                <td scope="row" class="Del">
+                                    <span class="remove" (click)="removeProduct(prod)">X</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="orderCheck">
+                        <h2 class="totalPrice">Загалом: {{ totalPrice }} грн</h2>
+                        <button class="btn order" (click)="openOrderModal()" (click)="closeBasket()">Оплатити</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="modalOrder" [style.backgroundColor]="bgOrder" [style.top]="topLgOrder">
+        <div class="modalOrder-in" [style.top]="topOrder">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Оплата</h4>
+                <button class="close pull-right" aria-label="Close" (click)="modalDel()">
+                    <img src="assets/images/times-solid.svg" class="img">
+                </button>
+            </div>
+            <div class="modal-box">
+                <div class="modal-box__block">
+                    <label for="userName">Ваше ім'я:</label>
+                    <input type="text" [(ngModel)]="userName" name="userName" id="userName" placeholder="name here..">
+                </div>
+
+                <div class="modal-box__block">
+                    <label for="userPhone">Телефон:</label>
+                    <input type="text" [(ngModel)]="userPhone" name="userPhone" id="userPhone"
+                        placeholder="phone here..">
+                </div>
+
+                <div class="modal-box__block">
+                    <label for="userAdress">Адреса:</label>
+                    <input type="text" [(ngModel)]="userAdress" name="userAdress" id="userAdress"
+                        placeholder="adress here..">
+                </div>
+
+                <div class="modal-box__block bigBlock">
+                    <label for="userComment">Коментарі:</label>
+                    <textarea type="text" [(ngModel)]="userComment" name="userComment" id="userComment"
+                        placeholder="comments here.."></textarea>
+                </div>
+
+                <div class="modal-box__block bigBlock blockProduct">
+                    <label>Ваші товари:</label>
+                    <div class="block--products">
+                        <span class="product" *ngFor="let prod of basket">{{prod.name | uppercase}} : {{prod.count}}
+                            шт.</span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="modal-buttons">
+                <button class="btn-close btn" (click)="modalDel()">Закрити</button>
+                <button class="btn-submit btn" (click)="addOrder()" (click)="modalDel()">Оплатити</button>
+            </div>
+        </div>
+    </section>
 
     <section class="modalI-all" [style.background]="bg" [style.top]="topLg">
         <div class="modalI" [style.top]="top">
@@ -119,6 +225,13 @@
                 <div class="button__inner" *ngIf="!checkLog" (click)="signUp()">Sign UP</div>
                 <a class="modalI-link" (click)="changeLog()"> {{ sign }} </a>
             </div>
+        </div>
+    </section>
+
+    <section class="modalOut" [style.top]="topLgOut" [style.backgroundColor]="bgOut">
+        <div class="modal-buttons mr-1" [style.top]="topOut">
+            <button class="btn btn-close" (click)="closeOutModal()">Dismiss</button>
+            <button class="btn btn-out" (click)="signOut()">Sign Out</button>
         </div>
     </section>
 </header>

@@ -1,0 +1,72 @@
+<section class="profile">
+    <div class="profile-container">
+        <div class="profile-title">
+            <h2>Account details</h2>
+        </div>
+        <div class="profile-menu">
+            <div class="profile-menu__link" (click)="chooseItem(true)">{{ email }}</div>
+            <div class="profile-menu__link" (click)="chooseItem(false)">Order history</div>
+        </div>
+        <div class="menu--info" *ngIf="change">
+            <div class="info--image">
+                <img [src]="image" alt="">
+                <div class="file">
+                    <button class="btn">Upload</button>
+                    <input type="file" (change)="uploadFile($event)" name="myfile">
+                </div>
+
+            </div>
+            <div class="info-block">
+                <div class="info--title">
+                    <h2>Your data:</h2>
+                </div>
+                <div class="info--box">
+                    <label for="name">Name:</label>
+                    <input *ngIf="check" type="text" [(ngModel)]="name" name="name" id="name">
+                    <p *ngIf="!check">{{ name }}</p>
+                </div>
+                <div class="info--box">
+                    <label for="phone">Phone:</label>
+                    <input *ngIf="check" type="text" [(ngModel)]="phone" name="phone" id="phone">
+                    <p *ngIf="!check">{{ phone }}</p>
+                </div>
+                <div class="info--box">
+                    <label for="adress">Adress</label>
+                    <input *ngIf="check" type="text" [(ngModel)]="adress" name="adress" id="adress">
+                    <p *ngIf="!check">{{ adress }}</p>
+                </div>
+                <div class="info--button">
+                    <button class="btn edit" *ngIf="!check" (click)="edit()">Edit</button>
+                    <button class="btn" *ngIf="check" (click)="save()">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu--orders" *ngIf="!change">
+            <h2>Мої замовлення:</h2>
+            <table class="table mt-3 border">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Number</th>
+                        <th scope="col">Adress</th>
+                        <th scope="col">Products</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="w-100" *ngFor="let order of orders; let i=index">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ order?.adress }}</td>
+                        <td>
+                            <span *ngFor="let prod of order.products; let i=index">
+                                <p> {{prod.name}} : {{prod.count}} шт.</p>
+                            </span>
+                        </td>
+                        <td>{{ order?.price }} грн</td>
+                        <td>{{ order?.date }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

@@ -39,6 +39,10 @@
             </div>
         </div>
 
+        <div class="productOrder-button">
+            <div class="button-order" [routerLink]="[ '/our-whiskeys']">Спробувати</div>
+        </div>
+
         <div class="drink-special">
             <div class="drink-ingredients">
                 <h3 class="drink-ingredients__title">Інгредієнти</h3>
@@ -59,28 +63,5 @@
             </div>
         </div>
 
-        <div class="productOrder">
-            <div class="productOrder-counter">
-                <p class="productOrder-counter__weight">Об'єм: {{view?.weight}}</p>
-                <p class="productOrder-counter__title">Кількість: </p>
-
-                <div class="productOrder-counter__box">
-                    <span class="productCount lessProduct" (click)="productCount(view,false)"></span>
-                    <input class="counter" type="text" maxlength="3" [value]="view?.count">
-                    <span class="productCount moreProduct" (click)="productCount(view,true)"></span>
-                </div>
-            </div>
-
-            <div class="productOrder-price">
-                <div class="productOrder-price__inner">
-                    <p>Загалом:</p>
-                    <span class="productPrice">{{view?.price * view?.count}}</span><i>грн</i>
-                </div>
-            </div>
-            
-            <div class="productOrder-button">
-                <div class="button-order">Замовити</div>
-            </div>
-        </div>
     </div>
 </section>

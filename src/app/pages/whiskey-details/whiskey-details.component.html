@@ -57,7 +57,7 @@
             </div>
 
             <div class="productOrder-button">
-                <div class="button-order">Замовити</div>
+                <div class="button-order" (click)="addToBasket(view)">Замовити</div>
             </div>
         </div>
 
@@ -94,8 +94,12 @@
             </div>
         </div>
 
-        <!-- <div class="whiskey-video">
-            <div class="video__link" [style.background]="'url('+view?.video+')'"></div>
-        </div> -->
+        <section class="whiskey-video">
+            <div class="video-wrapper">
+                <youtube-player class="js-iframe" [videoId]="videoUrl" suggestedQuality="highres" [height]="520"
+                    [width]="846" [startSeconds]="4" [endSeconds]="8">
+                </youtube-player>
+            </div>
+        </section>
     </div>
 </section>

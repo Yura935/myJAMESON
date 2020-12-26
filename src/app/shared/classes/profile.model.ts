@@ -7,9 +7,8 @@ export class Profile implements IProfile {
         public email: string,
         public firstName: string = '',
         public phone: string = '',
-        public city: string = '',
-        public street: string = '',
-        public house: string = '',
+        public adress: string = '',
+        public image: string = '',
         public orders: Array<IOrder> = [],
     ) {
         this.role = 'user';

@@ -4,9 +4,8 @@ export interface IProfile {
     email: string;
     firstName: string;
     phone: string;
-    city: string;
-    street: string;
-    house: string;
+    adress: string;
     orders: Array<IOrder>;
+    image: string;
     role: string;
 }

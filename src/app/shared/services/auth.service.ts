@@ -12,6 +12,7 @@ export class AuthService {
   checkSignIn: Subject<any> = new Subject<any>();
   userRef: AngularFirestoreCollection<any> = null;
   private dbPath = '/users';
+
   constructor(private db: AngularFirestore, private auth: AngularFireAuth, private router: Router) {
     this.userRef = this.db.collection(this.dbPath);
   }
@@ -62,15 +63,28 @@ export class AuthService {
             });
           }
         );
-      });
+      })
+      .catch(err => {
+        alert(err);
+        console.log(err);
+      })
   }
 
   signOut(): void {
     this.auth.signOut()
       .then(() => {
         localStorage.removeItem('user');
+        localStorage.removeItem('basket');
         this.checkSignIn.next(false);
         this.router.navigateByUrl('home');
-      });
+      })
+      .catch(err => {
+        alert(err);
+        console.log(err);
+      })
+  }
+
+  updateUserData(id: string, data: any): Promise<void> {
+    return this.userRef.doc(id).update({ ...data });
   }
 }

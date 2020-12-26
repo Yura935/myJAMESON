@@ -25,6 +25,10 @@ import { WhiskeyDetailsComponent } from './pages/whiskey-details/whiskey-details
 import { DrinkDetailsComponent } from './pages/drink-details/drink-details.component';
 import { SearchPipe } from './shared/pipes/search.pipe';
 
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
+import { ngxUiLoaderConfig } from './preloader-config';
+
+import { YouTubePlayerModule } from "@angular/youtube-player";
 
 @NgModule({
   declarations: [
@@ -51,7 +55,10 @@ import { SearchPipe } from './shared/pipes/search.pipe';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderRouterModule,
+    YouTubePlayerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
