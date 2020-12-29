@@ -28,11 +28,11 @@
                     <a (click)="openModal()">Увійти</a>
                 </li>
                 <li *ngIf="onLine">
-                    <img class="img" src="../../../assets/images/avatar.svg" [routerLink]="[ '/profile' ]" alt="">
+                    <img class="img" src="../../../assets/icons/avatar.svg" [routerLink]="[ '/profile' ]" alt="avatar">
                 </li>
                 <li class="basket" (click)="goToBasket()">
                     <div class="basket-link">
-                        <img src="../../../assets/images/icon-cart.svg" alt="shopping-cart">
+                        <img src="../../../assets/icons/icon-cart.svg" alt="shopping-cart">
                         <span class="basketPrice">
                             <i>{{ totalPrice }} грн</i>
                         </span>
@@ -66,10 +66,13 @@
                 <a (click)="openModal()">Увійти</a>
             </li>
             <li>
-                <a (click)="modalDel()">Кошик</a>
+                <a (click)="modalDel()" (click)="goToBasket()">Кошик</a>
             </li>
             <li *ngIf="onLine">
                 <a (click)="modalDel()" [routerLink]="[ '/profile' ]">Профіль</a>
+            </li>
+            <li *ngIf="onLine">
+                <a (click)="openOutModal()">Вийти</a>
             </li>
         </ul>
     </div>
@@ -135,25 +138,26 @@
             <div class="modal-header">
                 <h4 class="modal-title pull-left">Оплата</h4>
                 <button class="close pull-right" aria-label="Close" (click)="modalDel()">
-                    <img src="assets/images/times-solid.svg" class="img">
+                    <img src="assets/icons/times-solid.svg" class="img">
                 </button>
             </div>
             <div class="modal-box">
                 <div class="modal-box__block">
                     <label for="userName">Ваше ім'я:</label>
-                    <input type="text" [(ngModel)]="userName" name="userName" id="userName" placeholder="name here..">
+                    <input type="text" [(ngModel)]="userName" name="userName" id="userName"
+                        [style.borderColor]="borderColorName" placeholder="name here..">
                 </div>
 
                 <div class="modal-box__block">
                     <label for="userPhone">Телефон:</label>
                     <input type="text" [(ngModel)]="userPhone" name="userPhone" id="userPhone"
-                        placeholder="phone here..">
+                        [style.borderColor]="borderColorPhone" placeholder="phone here..">
                 </div>
 
                 <div class="modal-box__block">
                     <label for="userAdress">Адреса:</label>
-                    <input type="text" [(ngModel)]="userAdress" name="userAdress" id="userAdress"
-                        placeholder="adress here..">
+                    <input type="text" [(ngModel)]="userAdress" name="userAdress"
+                        [style.borderColor]="borderColorAdress" id="userAdress" placeholder="adress here..">
                 </div>
 
                 <div class="modal-box__block bigBlock">
@@ -169,11 +173,18 @@
                             шт.</span>
                     </div>
                 </div>
+
+                <div class="modal-box__block bigBlock blockPrice">
+                    <label>Загальна ціна:</label>
+                    <div class="block--totalPrice">
+                        <span class="totalPrice">{{ totalPrice }} грн</span>
+                    </div>
+                </div>
             </div>
             <hr>
             <div class="modal-buttons">
                 <button class="btn-close btn" (click)="modalDel()">Закрити</button>
-                <button class="btn-submit btn" (click)="addOrder()" (click)="modalDel()">Оплатити</button>
+                <button class="btn-submit btn" (click)="addOrder()">Оплатити</button>
             </div>
         </div>
     </section>
@@ -197,25 +208,25 @@
                     <div class="box-input">
                         <label for="login">Login:</label>
                         <input type="email" [(ngModel)]="userEmail" name="userEmail" id="login"
-                            placeholder="Please enter your email">
+                            [style.borderColor]="borderColorLog" placeholder="Please enter your email">
                     </div>
 
                     <div class="box-input">
                         <label for="password">Password:</label>
                         <input type="password" [(ngModel)]="userPass" name="userPass" id="password"
-                            placeholder="Please enter your pass">
+                            [style.borderColor]="borderColorPass" placeholder="Please enter your pass">
                     </div>
 
                     <div class="box-input" *ngIf="!checkLog">
                         <label for="name">User name:</label>
                         <input type="text" [(ngModel)]="userName" name="userName" id="name"
-                            placeholder="Please enter your name">
+                            [style.borderColor]="borderColorName" placeholder="Please enter your name">
                     </div>
 
                     <div class="box-input" *ngIf="!checkLog">
                         <label for="phone">Phone:</label>
                         <input type="text" [(ngModel)]="userPhone" name="userPhone" id="phone"
-                            placeholder="Please enter your phone">
+                            [style.borderColor]="borderColorPhone" placeholder="Please enter your phone">
                     </div>
                 </div>
             </div>

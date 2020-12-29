@@ -1,0 +1,379 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+.contacts {
+  width: 100%;
+  height: auto;
+
+  &-container {
+    width: 100%;
+    padding: 12vh 50px 0;
+
+    .contacts-title {
+      margin-top: 10px;
+
+      h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: $mainColor;
+      }
+    }
+
+    .contacts-admin {
+      width: 100%;
+      height: auto;
+      @include flexbox(normal, normal, row, nowrap);
+      margin: 15px 0 20px;
+
+      &__image {
+        width: 240px;
+        height: 240px;
+        border: 1px solid gray;
+        outline: none;
+        background-image: url('../../../assets/images/admin.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      &__info {
+        margin-left: 25px;
+        margin-top: 10px;
+
+        p {
+          font-weight: 600;
+          font-size: 28px;
+          color: crimson;
+        }
+
+        .info--email {
+          margin: 10px 0;
+          font-weight: 500;
+          font-size: 20px;
+          color: #000;
+        }
+
+        // .info--number {
+        //   @extend .info--email;
+        //   color: darkblue;
+        // }
+
+        .contacts-links {
+          width: 100%;
+          height: auto;
+          @include flexbox(normal, center, row, nowrap);
+          margin: 10px 0;
+
+          &__item {
+            width: 40px;
+            height: 40px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin: 5px;
+            cursor: pointer;
+
+            a {
+              display: block;
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .git {
+            background-image: url('../../../assets/icons/git.svg');
+          }
+
+          .facebook {
+            background-image: url('../../../assets/icons/facebook.svg');
+          }
+
+          .instagram {
+            background-image: url('../../../assets/icons/instagram.svg');
+          }
+
+          .linkedIn {
+            background-image: url('../../../assets/icons/linkedin.svg');
+          }
+        }
+      }
+    }
+
+    .contacts-confidentiality {
+      width: 100%;
+      color: $mainColor;
+      margin-bottom: 50px;
+
+      h2 {
+        font-size: 32px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      &__item {
+        width: 100%;
+        height: auto;
+        @include flexbox(normal, center, row, nowrap);
+        margin-bottom: 20px;
+
+        .item--left {
+          margin-bottom: 10px;
+          text-align: left;
+          font-size: 16px;
+          letter-spacing: 1px;
+          word-spacing: 2px;
+          line-height: 1.2;
+          width: 60%;
+        }
+
+        .item--right {
+          width: 100%;
+          @extend .item--left;
+          text-align: right;
+        }
+
+        .item--image {
+          width: 40%;
+          height: 180px;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+        }
+
+        .first {
+          background-image: url('../../../assets/images/confidential.jpg');
+        }
+
+        .second {
+          background-image: url('../../../assets/images/cyber_security.jpg');
+        }
+      }
+
+      .reverse {
+        flex-direction: row-reverse;
+      }
+    }
+
+    .contacts-collapse {
+      width: 109.5%;
+      height: 600px;
+      position: relative;
+      left: -5.5%;
+      background-image: url('../../../assets/images/jameson-contact.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .contacts-container {
+    .contacts-collapse {
+      width: 110.9%;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .contacts {
+    &-container {
+      width: 100%;
+      padding: 10vh 40px 0;
+
+      .contacts-title {
+        h2 {
+          font-size: 34px;
+        }
+      }
+
+      .contacts-admin {
+        @include flexbox(normal, normal, row, nowrap);
+
+        &__image {
+          width: 240px;
+          height: 240px;
+        }
+
+        &__info {
+          margin-left: 30px;
+          margin-top: 10px;
+
+          p {
+            font-weight: 600;
+            font-size: 26px;
+          }
+
+          .info--email {
+            font-size: 18px;
+          }
+
+          // .info--number {
+          //   @extend .info--email;
+          //   color: darkblue;
+          // }
+
+          .contacts-links {
+            @include flexbox(normal, center, row, nowrap);
+            margin: 10px 0;
+          }
+        }
+      }
+
+      .contacts-confidentiality {
+        h2 {
+          font-size: 32px;
+          margin-bottom: 15px;
+        }
+
+        &__item {
+          width: 100%;
+          height: auto;
+          @include flexbox(normal, center, row, nowrap);
+
+          .item--left,
+          .item--right {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.2;
+            width: 55%;
+          }
+
+          .item--image {
+            width: 45%;
+            height: 180px;
+          }
+        }
+      }
+
+      .contacts-collapse {
+        width: 111.8%;
+        height: 550px;
+        left: -6%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .contacts {
+    &-container {
+      padding: 10vh 20px 0;
+
+      .contacts-title {
+        h2 {
+          font-size: 32px;
+        }
+      }
+
+      .contacts-admin {
+        @include flexbox(normal, center, column, nowrap);
+
+        &__image {
+          width: 100%;
+          height: 280px;
+        }
+
+        &__info {
+          margin-left: 0;
+          margin-top: 20px;
+          text-align: center;
+
+          p {
+            font-weight: 600;
+            font-size: 24px;
+          }
+
+          .info--email {
+            font-size: 16px;
+          }
+        }
+      }
+
+      .contacts-confidentiality {
+        h2 {
+          font-size: 30px;
+          margin-bottom: 20px;
+        }
+
+        &__item {
+          @include flexbox(normal, center, column, nowrap);
+
+          .item--left,
+          .item--right {
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.2;
+            width: 100%;
+            text-align: justify;
+          }
+
+          .item--image {
+            width: 100%;
+            height: 180px;
+          }
+        }
+
+        .reverse {
+          flex-direction: column;
+        }
+      }
+
+      .contacts-collapse {
+        width: 114%;
+        height: 550px;
+        left: -7%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 546px) {
+  .contacts-container {
+    .contacts-collapse {
+      width: 111%;
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .contacts-container {
+    .contacts-collapse {
+      width: 112.3%;
+    }
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .contacts-container {
+    .contacts-collapse {
+      width: 113%;
+    }
+  }
+}
+
+@media screen and (max-width: 362px) {
+  .contacts-container {
+    .contacts-collapse {
+      width: 113.2%;
+    }
+  }
+}
+
+@media screen and (max-width: 322px) {
+  .contacts-container {
+    .contacts-collapse {
+      width: 114%;
+    }
+  }
+}
+
+@media screen and (max-width: 282px) {
+  .contacts-container {
+    .contacts-collapse {
+      left: -8.2%;
+      width: 116.4%;
+    }
+  }
+}

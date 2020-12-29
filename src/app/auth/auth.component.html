@@ -1,0 +1,46 @@
+<div class="adminLog">
+    <div class="adminLog-container">
+        <div class="adminLog-wrap">
+            <div class="adminLog-close">
+                <a class="close" [routerLink]="[ '/home' ]">
+                    <img src="../../assets/icons/times-solid1.svg" alt="IMG">
+                </a>
+            </div>
+
+            <div class="adminLog-picture">
+                <img src="../../assets/images/admin-logo.jpg" alt="IMG">
+            </div>
+
+            <form class="adminLog-form">
+                <span class="adminLog-form-title">Login</span>
+
+                <div class="adminLog-form__input">
+                    <input [(ngModel)]="email" class="input--text" type="text" name="email" placeholder="Email"
+                        [style.border]="borderLog">
+                    <span class="input--focus"></span>
+                    <span class="input--symbol">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="adminLog-form__input">
+                    <input [(ngModel)]="password" class="input--text" type="password" name="pass" placeholder="Password"
+                        [style.border]="borderPass">
+                    <span class="input--focus"></span>
+                    <span class="input--symbol">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="adminLog-form__btn">
+                    <button class="btn--login" type="button" (click)="adminSignIn()">Login</button>
+                </div>
+
+                <div class="adminLog-form__text">
+                    <span class="text1">Forgot</span>
+                    <a class="text2" href="#">Username / Password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

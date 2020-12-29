@@ -203,7 +203,7 @@
     width: 20px;
     height: 20px;
     transform: translateY(-50%);
-    cursor: pointer;
+    cursor: $linkCursor;
   }
 
   .moreProduct {
@@ -282,9 +282,9 @@
       @include flexbox(normal, normal, column, wrap);
 
       h3 {
-        color: #004027;
+        color: $mainColorText;
         display: inline-block;
-        border-bottom: 3px solid #004027;
+        border-bottom: 3px solid $mainColorText;
         font-weight: 700;
         font-size: 32px;
         line-height: 1.1;
@@ -294,7 +294,7 @@
       }
 
       p {
-        color: #004027;
+        color: $mainColorText;
         font-size: 16px;
         line-height: 32px;
         margin-bottom: 15px;
@@ -312,10 +312,19 @@
       width: 100%;
       height: 100%;
       position: relative;
-      cursor: pointer;
+      cursor: $linkCursor;
+
+      youtube-player {
+        position: absolute;
+        top: 0;
+        left: 10%;
+        border-width: 0;
+        outline-width: 0;
+      }
     }
   }
 }
+
 
 @media screen and (max-width: 960px) {
   .whiskey-details {
@@ -449,6 +458,18 @@
         }
       }
     }
+
+    .whiskey-video {
+      width: 100%;
+      height: 450px;
+      margin: 0 auto 20px;
+      padding: 15px;
+
+      .video-wrapper {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
 
@@ -469,13 +490,14 @@
       .whiskeys-title {
         width: 60%;
         margin-bottom: 0;
-        margin-top: 300px;
+        margin-top: 350px;
         right: 40px;
 
         &-head {
           text-align: right;
           font-size: 38px;
           line-height: 1.2;
+          text-shadow: 2px 1px 2px black; 
         }
       }
 
@@ -586,6 +608,16 @@
           font-size: 16px;
           line-height: 1.5;
         }
+      }
+    }
+
+    .whiskey-video {
+      width: 100%;
+      height: 340px;
+
+      .video-wrapper {
+        width: 100%;
+        height: 100%;
       }
     }
   }

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Drink } from 'src/app/shared/classes/drink.model';
 import { IDrink } from 'src/app/shared/interfaces/drink.interface';
 import { DrinkService } from 'src/app/shared/services/drink.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-drinks',
@@ -35,15 +36,13 @@ export class AdminDrinksComponent implements OnInit {
   drinkDescription: string;
   drinkTitleImage: string;
   drinkBlogImage: string;
-  drinkWeight: string;
-  drinkPrice: number;
   editStatus: boolean = false;
 
   drinks: Array<IDrink> = [];
 
   uploadProgressTitle: Observable<number>;
   uploadProgressBlog: Observable<number>;
-  constructor(private storage: AngularFireStorage, private drinkService: DrinkService) { }
+  constructor(private storage: AngularFireStorage, private drinkService: DrinkService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getDrinks();
@@ -70,9 +69,7 @@ export class AdminDrinksComponent implements OnInit {
       this.drinkTitleImage,
       this.drinkBlogImage,
       this.ingredients,
-      this.preparation,
-      this.drinkWeight,
-      this.drinkPrice
+      this.preparation
     );
     delete newProd.id;
     this.drinkService.create(newProd).then(() => {
@@ -90,8 +87,6 @@ export class AdminDrinksComponent implements OnInit {
     this.drinkBlogImage = drink.imageBlog;
     this.ingredients = drink.ingredients;
     this.preparation = drink.preparation;
-    this.drinkWeight = drink.weight;
-    this.drinkPrice = drink.price;
     this.editStatus = true;
   }
 
@@ -112,9 +107,7 @@ export class AdminDrinksComponent implements OnInit {
       this.drinkTitleImage,
       this.drinkBlogImage,
       this.ingredients,
-      this.preparation,
-      this.drinkWeight,
-      this.drinkPrice
+      this.preparation
     );
     delete currentProd.id;
     this.drinkService.update(this.drinkID.toString(), currentProd)
@@ -132,8 +125,6 @@ export class AdminDrinksComponent implements OnInit {
     this.drinkBlogImage = '';
     this.ingredients = [];
     this.preparation = [];
-    this.drinkWeight = '';
-    this.drinkPrice = null;
   }
 
   addIngredient(): void {
@@ -213,6 +204,11 @@ export class AdminDrinksComponent implements OnInit {
         this.drinkTitleImage = url;
       });
       console.log('Photo added!');
+      this.toastr.success('Order added!', 'Success');
+    });
+    upload.catch(err => {
+      console.log(err);
+      this.toastr.error('Error!', 'Denied');
     });
   }
 
@@ -226,6 +222,11 @@ export class AdminDrinksComponent implements OnInit {
         this.drinkBlogImage = url;
       });
       console.log('Photo added!');
+      this.toastr.success('Order added!', 'Success');
+    });
+    upload.catch(err => {
+      console.log(err);
+      this.toastr.error('Error!', 'Denied');
     });
   }
 

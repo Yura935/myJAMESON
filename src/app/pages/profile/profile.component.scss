@@ -3,7 +3,8 @@
 
 .profile {
   width: 100%;
-  height: 80vh;
+  min-height: 80vh;
+  height: auto;
   background-color: whitesmoke;
 
   &-container {
@@ -15,8 +16,13 @@
       font-size: 32px;
       font-weight: 700;
       color: $mainColorText;
-      margin: 75px 0 10px;
+      margin: 0 0 10px;
       text-transform: uppercase;
+      position: relative;
+
+      h2 {
+        padding-top: 10px;
+      }
     }
 
     .profile-menu {
@@ -29,7 +35,7 @@
 
       &__link {
         text-align: center;
-        cursor: pointer;
+        cursor: $linkCursor;
         line-height: 28px;
         font-weight: 500;
         font-size: 18px;
@@ -49,6 +55,12 @@
         height: auto;
         min-height: 160px;
 
+        img {
+          width: 250px;
+          height: 250px;
+          padding: 10px;
+        }
+
         .file {
           position: relative;
           overflow: hidden;
@@ -59,22 +71,15 @@
 
         .btn {
           border: 2px solid #78ffd6;
-          color: white;
+          color: $textColor;
           background: #78ffd6;
           background: linear-gradient(to right, #11998e, #38ef7d);
           padding: 8px 20px;
-          border-radius: 8px;
+          border-radius: 10px;
           font-size: 20px;
           font-weight: bold;
           transition: background .250s linear, color .250s linear, border .250s linear;
-          cursor: pointer;
-        }
-
-        img {
-          width: 250px;
-          height: 250px;
-          padding: 10px;
-          border-radius: 20px;
+          cursor: $linkCursor;
         }
 
         input[type=file] {
@@ -85,7 +90,7 @@
           left: 0px;
           top: 0;
           opacity: 0;
-          cursor: pointer;
+          cursor: $linkCursor;
         }
       }
 
@@ -116,8 +121,12 @@
             width: 50%;
             height: 100%;
             padding-left: 10px;
-            border: 1px solid #dee2e6;
+            border: 1px solid gray;
             border-radius: .25rem;
+          }
+
+          input::placeholder {
+            font-style: italic;
           }
 
           input:focus {
@@ -126,23 +135,41 @@
 
           p {
             width: 150px;
-            text-align: left;
+            text-align: right;
             font-size: 18px;
             font-weight: 500;
             color: $mainColorText;
+          }
+
+          .empty {
+            width: 250px;
+            font-size: 16px;
+            color: #666666;
+          }
+        }
+
+        .alert {
+          background-color: gray;
+
+          p {
+            display: block;
+            width: 100%;
+            color: $textColor;
+            text-align: center;
           }
         }
 
         .info--button {
           @include flexbox(flex-end, center, row, nowrap);
+          margin-top: 10px;
 
           button {
             width: 80px;
             height: 40px;
             background-color: forestgreen;
-            border: 1px solid forestgreen;
+            border: 1px solid rgb(24, 136, 24);
             border-radius: 5px;
-            color: white;
+            color: $textColor;
             font-size: 18px;
             font-weight: 500;
             margin-right: 10px;
@@ -150,7 +177,7 @@
 
           .edit {
             background-color: orange;
-            border: 1px solid orange;
+            border: 1px solid rgb(204, 133, 0);
           }
         }
       }
@@ -170,14 +197,276 @@
       table {
         text-align: center;
         border: 2px solid #78ffd6;
-        color: white;
+        color: $textColor;
         background: #78ffd6;
         background: linear-gradient(to right, #00b09b, #96c93d);
 
         thead {
           th {
-            color: white;
+            color: $textColor;
             background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .profile {
+    width: 100%;
+
+    &-container {
+      padding: 0 30px;
+      margin-top: 10vh;
+
+      .profile-title {
+        width: 100%;
+        font-size: 32px;
+        margin: 0 0 15px;
+      }
+
+      .profile-menu {
+        height: 50px;
+        border-width: 2px;
+
+        &__link {
+          line-height: 36px;
+          font-size: 20px;
+        }
+      }
+
+      .menu--info {
+        margin-top: 10px;
+
+        .info--image {
+          width: 40%;
+
+          img {
+            width: 100%;
+            height: 280px;
+          }
+
+          .file {
+            width: 150px;
+            margin-left: 65px;
+          }
+
+          .btn {
+            width: 150px;
+            height: 70px;
+            font-size: 22px;
+          }
+
+          input[type=file] {
+            width: 150px;
+            height: 70px;
+          }
+        }
+
+        .info-block {
+          width: 60%;
+          height: 100%;
+
+          .info--title {
+            font-size: 34px;
+          }
+
+          .info--box {
+            height: 40px;
+
+            label {
+              font-size: 24px;
+            }
+
+            input {
+              width: 70%;
+            }
+
+            p {
+              font-size: 20px;
+            }
+          }
+
+          .info--button {
+            button {
+              width: 125px;
+              height: 60px;
+              border-width: 2px;
+              border-radius: 10px;
+              font-size: 22px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      .menu--orders {
+        h2 {
+          padding: 20px 10px 10px;
+          font-size: 34px;
+        }
+
+        table {
+
+          th,
+          td {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .profile {
+    &-container {
+      padding: 0 20px;
+      margin-top: 10vh;
+
+      .profile-title {
+        width: 100%;
+        font-size: 28px;
+
+        h2 {
+          padding-top: 10px;
+        }
+      }
+
+      .profile-menu {
+        padding: 5px 0;
+
+        &__link {
+          font-size: 14px;
+        }
+      }
+
+      .menu--info {
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        .info--image {
+          width: 100%;
+
+          img {
+            height: 300px;
+            margin-bottom: 10px;
+            padding: 20px;
+          }
+
+          .file {
+            width: 150px;
+            margin-left: 27%;
+          }
+        }
+
+        .info-block {
+          width: 100%;
+          margin-top: 10px;
+
+          .info--title {
+            font-size: 28px;
+          }
+
+          .info--box {
+            flex-direction: column;
+            align-items: normal;
+
+            label {
+              font-size: 18px;
+              margin-left: 0;
+            }
+
+            input {
+              width: 100%;
+              height: 30px;
+              margin: 5px;
+            }
+
+            p {
+              width: 100%;
+              font-size: 16px;
+              text-align: right;
+              padding-left: 10px;
+              margin-top: -10px;
+            }
+          }
+
+          .alert {
+            p {
+              margin-top: 0;
+              text-align: center;
+              padding: 0;
+            }
+          }
+
+          .info--button {
+            button {
+              width: 100px;
+              height: 50px;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+
+      .menu--orders {
+        h2 {
+          padding: 20px 10px 10px;
+          font-size: 34px;
+        }
+
+        table {
+
+          th,
+          td {
+            font-size: 20px;
+          }
+        }
+
+        table {
+          display: flex;
+          overflow-y: scroll;
+          position: relative;
+        }
+
+        td {
+          height: 60px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          line-height: 32px;
+          text-align: center;
+        }
+
+        th {
+          margin-right: 0 !important;
+          height: 60px;
+          line-height: 32px;
+          text-align: center;
+        }
+
+        tr {
+          border: 1px solid #dee2e6;
+          display: flex;
+          flex-flow: column;
+        }
+
+        tbody {
+          display: flex;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .profile {
+    &-container {
+      .menu--info {
+        .info--image {
+          .file {
+            margin-left: 25%;
           }
         }
       }

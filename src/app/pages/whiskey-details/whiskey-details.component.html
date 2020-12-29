@@ -45,7 +45,8 @@
 
                 <div class="productOrder-counter__box">
                     <span class="productCount lessProduct" (click)="productCount(view,false)"></span>
-                    <input class="counter" type="text" maxlength="3" [value]="view?.count">
+                    <input class="counter" type="text" maxlength="3" [(ngModel)]="count" name="count"
+                        (input)="changeCount(view)" [value]="view?.count">
                     <span class="productCount moreProduct" (click)="productCount(view,true)"></span>
                 </div>
             </div>
@@ -96,9 +97,8 @@
 
         <section class="whiskey-video">
             <div class="video-wrapper">
-                <youtube-player class="js-iframe" [videoId]="videoUrl" suggestedQuality="highres" [height]="520"
-                    [width]="846" [startSeconds]="4" [endSeconds]="8">
-                </youtube-player>
+                <youtube-player [videoId]="videoUrl" [height]="videoHeight" [width]="videoWidth"
+                    [style.left]='videoLeft'></youtube-player>
             </div>
         </section>
     </div>

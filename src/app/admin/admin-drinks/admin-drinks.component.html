@@ -167,20 +167,6 @@
     </section>
 
     <div class="form-group">
-        <div class="form-group__inner">
-            <label for="drinkWeight">Weight: </label>
-            <input [(ngModel)]="drinkWeight" name="drinkWeight" type="text" class="form-control" id="drinkWeight">
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="form-group__inner">
-            <label for="drinkPrice">Price: </label>
-            <input [(ngModel)]="drinkPrice" name="drinkPrice" type="number" class="form-control" id="drinkPrice">
-        </div>
-    </div>
-
-    <div class="form-group">
         <div class="form-group__inner add">
             <button type="button" *ngIf="!editStatus" (click)="addProduct()" class="btn but btn-primary">ADD</button>
             <button type="button" *ngIf="editStatus" (click)="updateProduct()" class="btn but btn-info">Save</button>
@@ -196,7 +182,6 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
-            <th scope="col">Price</th>
             <th scope="col">Image</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
@@ -207,7 +192,6 @@
             <td>{{ i+1 }}</td>
             <td>{{ drink.name }}</td>
             <td>{{ drink.description }}</td>
-            <td>{{ drink.price }}</td>
             <td>
                 <img [attr.src]="drink?.imageTitle" style="width: 100px;" alt="">
             </td>

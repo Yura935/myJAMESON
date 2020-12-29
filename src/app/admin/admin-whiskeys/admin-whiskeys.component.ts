@@ -5,6 +5,7 @@ import { IWhiskey } from 'src/app/shared/interfaces/whiskey.interface';
 import { WhiskeyService } from 'src/app/shared/services/whiskey.service';
 import { map } from 'rxjs/operators';
 import { Whiskey } from 'src/app/shared/classes/whiskey.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-whiskeys',
@@ -31,7 +32,7 @@ export class AdminWhiskeysComponent implements OnInit {
 
   uploadProgressTitle: Observable<number>;
   uploadProgressBlog: Observable<number>;
-  constructor(private storage: AngularFireStorage, private whiskeyService: WhiskeyService) { }
+  constructor(private storage: AngularFireStorage, private whiskeyService: WhiskeyService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getWiskeys();
@@ -47,7 +48,11 @@ export class AdminWhiskeysComponent implements OnInit {
         this.whiskeyTitleImage = url;
       });
       console.log('Photo added!');
-
+      this.toastr.success('Order added!', 'Success');
+    });
+    upload.catch(err => {
+      console.log(err);
+      this.toastr.error('Error!', 'Denied');
     });
   }
 
@@ -61,6 +66,11 @@ export class AdminWhiskeysComponent implements OnInit {
         this.whiskeyBlogImage = url;
       });
       console.log('Photo added!');
+      this.toastr.success('Order added!', 'Success');
+    });
+    upload.catch(err => {
+      console.log(err);
+      this.toastr.error('Error!', 'Denied');
     });
   }
 

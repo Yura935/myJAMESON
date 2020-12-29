@@ -60,7 +60,7 @@ textarea {
 .modalI-all {
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, .7);
+  background: $bgDark;
   position: fixed;
   z-index: 50;
   left: 0;
@@ -93,7 +93,7 @@ textarea {
         height: 5px;
         background-color: $textColor;
         margin: 5px;
-        border-radius: 5px;
+        border-radius: $mainBRadius;
       }
 
       .line1 {
@@ -183,7 +183,7 @@ textarea {
 
     .modalI-link {
       height: 20px;
-      color: #fff;
+      color: $textColor;
       float: right;
     }
 

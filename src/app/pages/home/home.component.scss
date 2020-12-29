@@ -84,7 +84,7 @@
         }
 
         &__tag {
-          background-color: #fff;
+          background-color: $textColor;
           width: 20%;
           height: 45px;
           margin-top: -44px;
@@ -125,7 +125,7 @@
           line-height: 60px;
           background-color: #007749;
           border: 3px solid #007749;
-          color: #fff;
+          color: $textColor;
           font-size: 0.8rem;
           cursor: $linkCursor;
           text-transform: uppercase;
@@ -136,7 +136,6 @@
     }
   }
 }
-
 
 @media screen and (max-width: 960px) {
   .home {
@@ -152,7 +151,7 @@
         &-head {
           width: 30%;
           text-align: center;
-          line-height: 48px;
+          line-height: $fontNavSize;
           font-size: 42px;
         }
       }
@@ -209,6 +208,7 @@
 
         &-head {
           width: 75%;
+          text-shadow: 2px 1px 2px black; 
         }
       }
 
@@ -248,22 +248,22 @@
 
 @keyframes resize {
   0% {
-    background-image: url("https://jamesonwhiskey.s3-eu-west-1.amazonaws.com/JamesonWhiskey.com%20v2/image-carousel/Homepage/Jameson%2B-%2BEvergreen%2B-%2BFB%2BStill%2BImage.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Evergreen+-+FB+Still+Image.jpg");
   }
 
   25% {
-    background-image: url("https://jamesonwhiskey.s3-eu-west-1.amazonaws.com/JamesonWhiskey.com%20v2/image-carousel/Homepage/Jameson%2B-%2BEvergreen%2B-%2BIG%2BStill%2BImage%2B%25282%2529.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Evergreen+-+IG+Still+Image1.jpg");
   }
 
   50% {
-    background-image: url("https://jamesonwhiskey.s3-eu-west-1.amazonaws.com/JamesonWhiskey.com%20v2/image-carousel/Homepage/Jameson%2B-%2BJameson%2BGinger%2BLime%2B-%2BFB%2BStill%2BImage%2B%25282%2529.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Jameson+Ginger+Lime+-+FB+Still+Image1.jpg");
   }
 
   75% {
-    background-image: url("https://jamesonwhiskey.s3-eu-west-1.amazonaws.com/JamesonWhiskey.com%20v2/image-carousel/Homepage/Jameson%2B-%2BJameson%2BGinger%2BLime%2B-%2BFB%2BStill%2BImage.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Jameson+Ginger+Lime+-+FB+Still+Image.jpg");
   }
 
   100% {
-    background-image: url("https://jamesonwhiskey.s3-eu-west-1.amazonaws.com/JamesonWhiskey.com%20v2/image-carousel/Homepage/Jameson%2B-%2BEvergreen%2B-%2BFB%2BStill%2BImage.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Evergreen+-+FB+Still+Image.jpg");
   }
 }

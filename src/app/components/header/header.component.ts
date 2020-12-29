@@ -3,6 +3,7 @@ import { IOrder } from 'src/app/shared/interfaces/order.interface';
 import { IWhiskey } from 'src/app/shared/interfaces/whiskey.interface';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -49,7 +50,18 @@ export class HeaderComponent implements OnInit {
   topLgOut: string = '-200%';
   bgOut: string = 'transparent';
 
-  constructor(private authService: AuthService, private orderService: OrderService) { }
+  regExpName = /^[a-zA-Z]{1}[a-z]{1,19}?$/;
+  regExpPhone = /^[0-9]{10}$/;
+  regExpEmail = /^[a-zA-Z0-9\-\.]{1,}@gmail\.com|org\.ua|ukr\.net|meta\.ua|hotmail\.com|ex\.mail$/;
+  regExpPass = /^[a-zA-Z0-9]{6,15}$/;
+  regExpAdress = /^[a-zA-Z0-9\,\ ]{3,}$/;
+  borderColorLog: string = 'salmon';
+  borderColorPass: string = 'salmon';
+  borderColorPhone: string = 'salmon';
+  borderColorName: string = 'salmon';
+  borderColorAdress: string = 'salmon';
+
+  constructor(private authService: AuthService, private orderService: OrderService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getLocalProducts();
@@ -82,6 +94,10 @@ export class HeaderComponent implements OnInit {
       this.sign == 'Sign UP'
     }
     this.checkLog = !this.checkLog;
+    this.borderColorLog = 'salmon';
+    this.borderColorPass = 'salmon';
+    this.borderColorPhone = 'salmon';
+    this.borderColorName = 'salmon';
   }
 
   openModal(): void {
@@ -109,12 +125,14 @@ export class HeaderComponent implements OnInit {
     this.topLgOut = '0';
     this.topOut = '50%';
     this.bgOut = 'rgba(0, 0, 0, .7)';
+    this.modalDel();
   }
 
   closeOutModal(): void {
-    this.topLgOrder = '-200%';
+    this.topLgOut = '-200%';
     this.topOut = '-200%';
     this.bgOut = 'transparent';
+    this.modalDel();
   }
 
   modalDel(): void {
@@ -211,82 +229,194 @@ export class HeaderComponent implements OnInit {
 
   addOrder(): void {
     if (this.userName, this.userPhone, this.userAdress) {
-      if (this.basket.length > 0) {
-        this.userOrder =
-        {
-          products: this.basket,
-          firstName: this.userName,
-          adress: this.userAdress,
-          price: this.totalPrice,
-          comments: this.userComment,
-          date: this.userDate
-        };
-        this.orderService.create(this.userOrder)
-          .then(
-            () => {
-              console.log('Order added!');
+      if (this.regExpName.test(this.userName)) {
+        if (this.regExpPhone.test(this.userPhone)) {
+          if (this.regExpAdress.test(this.userAdress)) {
+            if (this.basket.length > 0) {
+              this.userOrder =
+              {
+                products: this.basket,
+                firstName: this.userName,
+                adress: this.userAdress,
+                price: this.totalPrice,
+                comments: this.userComment,
+                date: this.userDate
+              };
+              this.orderService.create(this.userOrder)
+                .then(
+                  () => {
+                    this.checkBasket = false;
+                    console.log('Order added!');
+                  }
+                )
+              if (localStorage.getItem('user')) {
+                this.currentUser = JSON.parse(localStorage.getItem('user'));
+                console.log(this.currentUser.orders);
+                if (typeof this.currentUser.orders != 'undefined') {
+                  this.currentUser.orders.push(this.userOrder);
+                  console.log(this.currentUser.orders);
+                }
+                else {
+                  this.currentUser.orders = [];
+                  this.currentUser.orders.push(this.userOrder);
+                }
+                localStorage.setItem('user', JSON.stringify(this.currentUser));
+                this.toastr.success('Order added!', 'Success');
+                this.modalDel();
+                this.orderService.update(this.currentUser.id, this.currentUser).then(
+                  () => {
+                    this.basket = [];
+                    localStorage.removeItem('basket');
+                    this.orderService.basket.next(this.basket);
+                    this.totalPrice = 0;
+                    this.reset();
+                  }
+                )
+              }
+              else {
+                this.toastr.error('Error!', 'Denied');
+                this.orderService.create(this.userOrder).then(
+                  () => {
+                    this.basket = [];
+                    localStorage.removeItem('basket');
+                    this.orderService.basket.next(this.basket);
+                    this.totalPrice = 0;
+                    this.checkBasket = false;
+                    this.reset();
+                  });
+                this.modalDel();
+              }
             }
-          )
-        if (localStorage.getItem('user')) {
-          this.currentUser = JSON.parse(localStorage.getItem('user'));
-          console.log(this.currentUser.orders);
-          if (typeof this.currentUser.orders != 'undefined') {
-            this.currentUser.orders.push(this.userOrder);
-            console.log(this.currentUser.orders);
           }
           else {
-            this.currentUser.orders = [];
-            this.currentUser.orders.push(this.userOrder);
+            alert('Your adress is incorrect. Correct the error and try again!');
+            this.borderColorPhone = 'salmon';
+            this.borderColorAdress = 'red';
+            this.borderColorName = 'salmon';
           }
-          localStorage.setItem('user', JSON.stringify(this.currentUser));
-          this.orderService.update(this.currentUser.id, this.currentUser).then(
-            () => {
-              this.basket = [];
-              localStorage.removeItem('basket');
-              this.orderService.basket.next(this.basket);
-              this.totalPrice = 0;
-              this.reset();
-            }
-          )
         }
         else {
-          this.orderService.create(this.userOrder).then(
-            () => {
-              this.basket = [];
-              localStorage.removeItem('basket');
-              this.orderService.basket.next(this.basket);
-              this.totalPrice = 0;
-              this.reset();
-            });
+          alert('Your phone is incorrect. Correct the error and try again!');
+          this.borderColorPhone = 'red';
+          this.borderColorName = 'salmon';
+          if (this.regExpAdress.test(this.userAdress)) {
+            this.borderColorAdress = 'salmon';
+          }
+          else {
+            this.borderColorAdress = 'red';
+          }
+        }
+      }
+      else {
+        alert('Your name is incorrect. Correct the error and try again!');
+        this.borderColorName = 'red';
+        if (this.regExpPhone.test(this.userPhone)) {
+          this.borderColorPhone = 'salmon';
+          if (this.regExpAdress.test(this.userAdress)) {
+            this.borderColorAdress = 'salmon';
+          }
+          else {
+            this.borderColorAdress = 'red';
+          }
+        }
+        else {
+          this.borderColorPhone = 'red';
+          if (this.regExpAdress.test(this.userAdress)) {
+            this.borderColorAdress = 'salmon';
+          }
+          else {
+            this.borderColorAdress = 'red';
+          }
         }
       }
     }
     else {
-      alert('Please fill in the fields!')
+      alert('Please fill in the fields!');
+      this.borderColorPhone = 'red';
+      this.borderColorAdress = 'red';
+      this.borderColorName = 'red';
     }
   }
 
   signUp(): void {
     if (this.userEmail && this.userPass && this.userName && this.userPhone) {
-      this.authService.signUp(this.userEmail, this.userPass, this.userName, this.userPhone);
-      this.reset();
-      this.modalDel();
-    }
-  }
-
-  signIn(): void {
-    if (this.userEmail && this.userPass) {
-      this.authService.signIn(this.userEmail, this.userPass)
-      if (this.userEmail == 'admin@gmail.com') {
-        this.admin = true;
-        this.reset();
-        this.modalDel();
+      if (this.regExpEmail.test(this.userEmail)) {
+        if (this.regExpPass.test(this.userPass)) {
+          if (this.regExpName.test(this.userName)) {
+            if (this.regExpPhone.test(this.userPhone)) {
+              this.authService.signUp(this.userEmail, this.userPass, this.userName, this.userPhone);
+              this.onLine = true;
+              this.reset();
+              this.modalDel();
+            }
+            else {
+              alert('Your phone is incorrect. Correct the error and try again!');
+              this.borderColorPhone = 'red';
+              this.borderColorLog = 'salmon';
+              this.borderColorPass = 'salmon';
+              this.borderColorName = 'salmon';
+            }
+          }
+          else {
+            alert('Your name is incorrect. Correct the error and try again!');
+            this.borderColorLog = 'salmon';
+            this.borderColorPass = 'salmon';
+            this.borderColorName = 'red';
+            this.borderColorPhone = 'red';
+          }
+        }
+        else {
+          alert('Your password is incorrect. Correct the error and try again!');
+          this.borderColorLog = 'salmon';
+          this.borderColorPass = 'red';
+          this.borderColorName = 'red';
+          this.borderColorPhone = 'red';
+        }
       }
       else {
-        this.onLine = true;
-        this.reset();
-        this.modalDel();
+        alert('Your email is incorrect. Correct the error and try again!');
+        this.borderColorLog = 'red';
+        this.borderColorPass = 'red';
+        this.borderColorName = 'red';
+        this.borderColorPhone = 'red';
       }
+    }
+    else {
+      alert('Please fill in all fields!');
+      this.borderColorLog = 'red';
+      this.borderColorPass = 'red';
+      this.borderColorName = 'red';
+      this.borderColorPhone = 'red';
+    }
+  }
+  signIn(): void {
+    if (this.userEmail && this.userPass) {
+      if (this.regExpEmail.test(this.userEmail)) {
+        if (this.regExpPass.test(this.userPass)) {
+          this.authService.signIn(this.userEmail, this.userPass)
+          if (this.userEmail == 'admin@gmail.com') {
+            this.reset();
+            this.modalDel();
+          }
+          else {
+            this.reset();
+            this.modalDel();
+          }
+        }
+        else {
+          alert('Your password is incorrect. Correct the error and try again!');
+          this.borderColorPass = 'red';
+        }
+      }
+      else {
+        alert('Your email is incorrect. Correct the error and try again!');
+        this.borderColorLog = 'red';
+      }
+    }
+    else {
+      alert('Please fill in the fields!');
+      this.borderColorLog = 'red';
+      this.borderColorPass = 'red';
     }
   }
 
@@ -307,10 +437,18 @@ export class HeaderComponent implements OnInit {
     this.userAdress = '';
     this.userComment = '';
     this.totalPrice = 0;
+    this.borderColorLog = 'salmon';
+    this.borderColorPass = 'salmon';
+    this.borderColorPhone = 'salmon';
+    this.borderColorName = 'salmon';
+    this.borderColorAdress = 'salmon';
+    this.checkBasket = false;
   }
 
   goToBasket(): void {
     this.right = '0';
+    this.checkMyBasket();
+    this.getLocalProducts();
   }
 
   closeBasket(): void {

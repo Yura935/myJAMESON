@@ -7,7 +7,4 @@ export interface IDrink {
     imageBlog: string;
     ingredients: Array<string>;
     preparation: Array<string>;
-    weight: string;
-    price: number;
-    count?: number;
 }

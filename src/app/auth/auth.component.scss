@@ -1,0 +1,351 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+a {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+a:focus {
+  outline: none !important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/*---------------------------------------------*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666666;
+  margin: 0px;
+}
+
+ul,
+li {
+  margin: 0px;
+  list-style-type: none;
+}
+
+/*---------------------------------------------*/
+input,
+textarea {
+  outline: none;
+  border: none;
+}
+
+textarea:focus,
+input:focus {
+  border-color: transparent !important;
+}
+
+input:focus::-webkit-input-placeholder,
+input:focus:-moz-placeholder,
+input:focus::-moz-placeholder,
+input:focus:-ms-input-placeholder,
+textarea:focus::-webkit-input-placeholder,
+textarea:focus:-moz-placeholder,
+textarea:focus::-moz-placeholder,
+textarea:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+input::-webkit-input-placeholder,
+input:-moz-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder,
+textarea::-webkit-input-placeholder,
+textarea:-moz-placeholder,
+textarea::-moz-placeholder,
+textarea:-ms-input-placeholder {
+  color: #999999;
+}
+
+/*---------------------------------------------*/
+button {
+  outline: none !important;
+  border: none;
+  background: transparent;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+iframe {
+  border: none !important;
+}
+
+/*//////////////////////////////////////////////////////////////////
+    [ login ]*/
+
+.adminLog {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.adminLog-container {
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  @include flexbox(center, center, row, wrap);
+  padding: 15px;
+  background: #000000;
+  background: -webkit-linear-gradient(to right, #EB5757, #000000);
+  background: linear-gradient(to right, #EB5757, #000000);
+}
+
+.adminLog-wrap {
+  position: relative;
+  width: 960px;
+  background: $textColor;
+  border-radius: 10px;
+  overflow: hidden;
+  @include flexbox(space-around, center, row, wrap);
+  min-height: 80vh;
+}
+
+/*------------------------------------------------------------------
+    [  ]*/
+.adminLog-picture {
+  width: 320px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+/*------------------------------------------------------------------
+    [  ]*/
+
+.adminLog-close {
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  @include flexbox(flex-end, center, row, wrap);
+
+  .close {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+    cursor: $linkCursor;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+/*------------------------------------------------------------------
+    [  ]*/
+.adminLog-form {
+  width: 300px;
+}
+
+.adminLog-form-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: $mainColor;
+  line-height: 1.2;
+  text-align: center;
+  width: 100%;
+  display: block;
+  padding-bottom: 40px;
+}
+
+/*---------------------------------------------*/
+.adminLog-form__input {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  margin-bottom: 10px;
+}
+
+.input--text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666666;
+  display: block;
+  width: 100%;
+  background: #e6e6e6;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 30px 0 68px;
+}
+
+/*------------------------------------------------------------------
+    [ Focus ]*/
+.input--focus {
+  display: block;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 0px 0px;
+  color: $adminColor;
+}
+
+.input--text:focus+.input--focus {
+  -webkit-animation: anim-shadow 0.6s ease-in-out forwards;
+  animation: anim-shadow 0.6s ease-in-out forwards;
+}
+
+@-webkit-keyframes anim-shadow {
+  to {
+    box-shadow: 0px 0px 50px 20px;
+    opacity: 0;
+  }
+}
+
+@keyframes anim-shadow {
+  to {
+    box-shadow: 0px 0px 50px 20px;
+    opacity: 0;
+  }
+}
+
+.input--symbol {
+  font-size: 18px;
+  @include flexbox(normal, center, row, wrap);
+  border-radius: 25px;
+  position: absolute;
+  bottom: 0;
+  top: 2px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 35px;
+  pointer-events: none;
+  color: #666666;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.input--text:focus+.input--focus+.input--symbol {
+  color: $adminColor;
+  padding-left: 28px;
+}
+
+/*------------------------------------------------------------------
+    [ Button ]*/
+.adminLog-form__btn {
+  width: 100%;
+  @include flexbox(center, normal, row, wrap);
+  padding-top: 25px;
+}
+
+.btn--login {
+  font-size: 18px;
+  line-height: 1;
+  color: $textColor;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  background: $adminColor;
+  @include flexbox(center, center, row, nowrap);
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.btn--login:hover {
+  background: rgb(11, 72, 186);
+}
+
+/*------------------------------------------------------------------*/
+
+.adminLog-form__text {
+  width: 100%;
+  height: 30px;
+  padding-top: 5px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.text1 {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #999999;
+  margin-right: 5px;
+}
+
+.text2 {
+  @extend .text1;
+  margin: 0;
+}
+
+.text2:hover {
+  text-decoration: none;
+  color: $adminColor;
+  font-size: 15px;
+}
+
+/*------------------------------------------------------------------
+    [ Responsive ]*/
+
+@media (max-width: 992px) {
+  .adminLog-wrap {
+    padding: 177px 90px 33px 85px;
+  }
+
+  .adminLog-picture {
+    width: 35%;
+  }
+
+  .adminLog-form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .adminLog-wrap {
+    padding: 100px 80px 33px 80px;
+  }
+
+  .adminLog-picture {
+    display: none;
+  }
+
+  .adminLog-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .adminLog-wrap {
+    padding: 100px 15px 33px 15px;
+  }
+}

@@ -52,8 +52,10 @@ export class DrinksComponent implements OnInit {
         console.log(this.randImg);
       }
     }
-    else {
-      i = 1;
+    else if (i == 0) {
+      this.randID = this.drinks[i].urlName;
+      this.randImg = this.drinks[i].imageTitle;
+      console.log(this.randImg);
     }
   }
 

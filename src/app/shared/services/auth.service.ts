@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Profile } from '../classes/profile.model';
 
 @Injectable({
@@ -86,5 +86,36 @@ export class AuthService {
 
   updateUserData(id: string, data: any): Promise<void> {
     return this.userRef.doc(id).update({ ...data });
+  }
+
+  signInAdmin(email: string, password: string): void {
+    this.auth.signInWithEmailAndPassword(email, password).then(response => {
+      const data = {
+        id: response.user.uid,
+        email: response.user.email
+      };
+      localStorage.setItem('adminCredential', JSON.stringify((data)));
+      response.user.getIdToken().then(
+        token => {
+          console.log(token);
+          localStorage.setItem('token', token);
+          this.router.navigateByUrl('admin');
+        }
+      );
+    });
+  }
+
+  signOutAdmin(): void {
+    this.auth.signOut()
+      .then(() => {
+        localStorage.removeItem('adminCredential');
+        localStorage.removeItem('token');
+        this.checkSignIn.next(false);
+        this.router.navigateByUrl('home');
+      });
+  }
+
+  checkToken(): Observable<string> {
+    return this.auth.idToken;
   }
 }

@@ -32,12 +32,12 @@
     padding: 0 30px;
 
     .history-title {
-      width: 60%;
+      width: 50%;
       position: absolute;
       top: 0;
       letter-spacing: 1.4px;
       margin-bottom: 60px;
-      margin-top: 330px;
+      margin-top: 360px;
       margin-left: 20px;
       text-align: left;
       @include flexbox(normal, normal, column, wrap);
@@ -92,19 +92,19 @@
         }
 
         .img1 {
-          background-image: url("https://jamesonwhiskey.s3-eu-west-1.amazonaws.com/JamesonWhiskey.com%20v2/image-carousel/Homepage/Jameson%2B-%2BEvergreen%2B-%2BFB%2BStill%2BImage.jpg");
+          background-image: url("../../../assets/images/Jameson+-+Evergreen+-+FB+Still+Image.jpg");
         }
 
         .img2 {
-          background-image: url('//styles.idlassets.com/prod/jamesonwhiskey-v2/805/images/our-story/our_process.jpg');
+          background-image: url('../../../assets/images/our_process.jpg');
         }
 
         .img3 {
-          background-image: url('//styles.idlassets.com/prod/jamesonwhiskey-v2/805/images/our-story/ingredients.jpg');
+          background-image: url('../../../assets/images/ingredients.jpg');
         }
 
         &__tag {
-          background-color: #fff;
+          background-color: $textColor;
           width: 45%;
           height: 45px;
           margin-top: -44px;
@@ -235,11 +235,12 @@
       padding: 0 20px;
 
       .history-title {
-        margin-top: 120%;
+        margin-top: 110%;
         margin-left: 0;
 
         &-head {
           width: 75%;
+          text-shadow: 2px 1px 2px black; 
         }
       }
 

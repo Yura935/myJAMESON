@@ -20,21 +20,56 @@
                 <div class="info--title">
                     <h2>Your data:</h2>
                 </div>
+
                 <div class="info--box">
-                    <label for="name">Name:</label>
-                    <input *ngIf="check" type="text" [(ngModel)]="name" name="name" id="name">
-                    <p *ngIf="!check">{{ name }}</p>
+                    <label for="firstName">First Name:</label>
+                    <input *ngIf="check" type="text" [(ngModel)]="firstName" name="firstName" id="firstName"
+                        placeholder="Please write your first name ..." (input)="CheckFName()"
+                        [style.borderColor]="CheckFName() ? 'gray' : 'red'">
+                    <p *ngIf="!check">{{ firstName }}</p>
+                    <p *ngIf="emptyfirstName" class="empty">Please write your first name</p>
                 </div>
+
+                <div class="info--box">
+                    <label for="lastName">Last Name:</label>
+                    <input *ngIf="check" type="text" [(ngModel)]="lastName" name="lastName" id="lastName"
+                        placeholder="Please write your last name ..." (input)="CheckLName()"
+                        [style.borderColor]="CheckLName() ? 'gray' : 'red'">
+                    <p *ngIf="!check">{{ lastName }}</p>
+                    <p *ngIf="emptylastName" class="empty">Please write your last name</p>
+                </div>
+
+                <div class="info--box">
+                    <label for="birth">Date of birth:</label>
+                    <input *ngIf="check" type="text" [(ngModel)]="birth" name="birth" id="birth"
+                        placeholder="Please write yourdate of birth ..." (input)="CheckBirth()"
+                        [style.borderColor]="CheckBirth() ? 'gray' : 'red'">
+                    <p *ngIf="!check">{{ birth }}</p>
+                    <p *ngIf="emptyBirth" class="empty">Please write your date of birth</p>
+                </div>
+
                 <div class="info--box">
                     <label for="phone">Phone:</label>
-                    <input *ngIf="check" type="text" [(ngModel)]="phone" name="phone" id="phone">
+                    <input *ngIf="check" type="text" [(ngModel)]="phone" name="phone" id="phone"
+                        placeholder="Please write your phone number ..." (input)="CheckPhone()"
+                        [style.borderColor]="CheckPhone() ? 'gray' : 'red'">
                     <p *ngIf="!check">{{ phone }}</p>
+                    <p *ngIf="emptyPhone" class="empty">Please write your phone</p>
                 </div>
+
                 <div class="info--box">
-                    <label for="adress">Adress</label>
-                    <input *ngIf="check" type="text" [(ngModel)]="adress" name="adress" id="adress">
+                    <label for="adress">Adress:</label>
+                    <input *ngIf="check" type="text" [(ngModel)]="adress" name="adress" id="adress"
+                        placeholder="Please write your adress ..." (input)="CheckAdress()"
+                        [style.borderColor]="CheckAdress() ? 'gray' : 'red'">
                     <p *ngIf="!check">{{ adress }}</p>
+                    <p *ngIf="emptyAdress" class="empty">Please write your adress</p>
                 </div>
+
+                <div class="info--box alert" *ngIf="checkSave">
+                    <p [style.color]="color">{{ content }}</p>
+                </div>
+
                 <div class="info--button">
                     <button class="btn edit" *ngIf="!check" (click)="edit()">Edit</button>
                     <button class="btn" *ngIf="check" (click)="save()">Save</button>

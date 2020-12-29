@@ -13,6 +13,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminWhiskeysComponent } from './admin/admin-whiskeys/admin-whiskeys.component';
 import { AdminDrinksComponent } from './admin/admin-drinks/admin-drinks.component';
 import { ProfileGuard } from './shared/guards/profile.guard';
+import { AuthComponent } from './auth/auth.component';
+import { AdminGuard } from './shared/guards/admin.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -24,8 +26,9 @@ const routes: Routes = [
   { path: 'our-drinks/:name', component: DrinkDetailsComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [ProfileGuard] },
+  { path: 'admin-login', component: AuthComponent },
   {
-    path: 'admin', component: AdminComponent, children: [
+    path: 'admin', component: AdminComponent, canActivate: [AdminGuard], children: [
       { path: '', pathMatch: 'full', redirectTo: 'whiskeys' },
       { path: 'whiskeys', component: AdminWhiskeysComponent },
       { path: 'drinks', component: AdminDrinksComponent },

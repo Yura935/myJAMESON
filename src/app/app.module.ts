@@ -29,6 +29,9 @@ import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from "ngx-ui-loader";
 import { ngxUiLoaderConfig } from './preloader-config';
 
 import { YouTubePlayerModule } from "@angular/youtube-player";
+import { AuthComponent } from './auth/auth.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
     ProfileComponent,
     WhiskeyDetailsComponent,
     DrinkDetailsComponent,
-    SearchPipe
+    SearchPipe,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,9 @@ import { YouTubePlayerModule } from "@angular/youtube-player";
     AngularFireAuthModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

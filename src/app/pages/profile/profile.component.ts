@@ -12,7 +12,9 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class ProfileComponent implements OnInit {
   change: boolean = true;
 
-  name: string;
+  firstName: string;
+  lastName: string;
+  birth: string;
   email: string = JSON.parse(localStorage.getItem('user')).email;
   phone: string;
   adress: string;
@@ -22,6 +24,22 @@ export class ProfileComponent implements OnInit {
   orders: Array<IOrder> = JSON.parse(localStorage.getItem('user')).orders;
 
   check: boolean = false;
+  checkSave: boolean = false;
+
+  content: string = 'Changes were saved!';
+  color: string = 'white';
+
+  emptyfirstName: boolean = true;
+  emptylastName: boolean = true;
+  emptyBirth: boolean = true;
+  emptyPhone: boolean = true;
+  emptyAdress: boolean = true;
+
+  regExpFirstName = /^[a-zA-Z]{1}[a-z]{1,19}?$/;
+  regExpLastName = /^[a-zA-Z]{1}[a-z]{1,19}?$/;
+  regExpBirth = /^[a-zA-Zа-юА-Ю0-9\.\ ]{8,19}$/;
+  regExpPhone = /^[0-9]{10}$/;
+  regExpAdress = /^[a-zA-Z0-9\,\ ]{3,}$/;
 
   constructor(private authService: AuthService, private storage: AngularFireStorage) { }
 
@@ -31,7 +49,9 @@ export class ProfileComponent implements OnInit {
 
   private getUserData(): void {
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    this.name = this.currentUser.firstName;
+    this.firstName = this.currentUser.firstName;
+    this.lastName = this.currentUser.lastName;
+    this.birth = this.currentUser.birth;
     this.phone = this.currentUser.phone;
     this.adress = this.currentUser.adress;
     this.orders = this.currentUser.orders;
@@ -40,6 +60,36 @@ export class ProfileComponent implements OnInit {
     }
     else {
       this.image = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png";
+    }
+    if (this.firstName) {
+      this.emptyfirstName = false;
+    }
+    else {
+      this.emptyfirstName = true;
+    }
+    if (this.lastName) {
+      this.emptylastName = false;
+    }
+    else {
+      this.emptylastName = true;
+    }
+    if (this.birth) {
+      this.emptyBirth = false;
+    }
+    else {
+      this.emptyBirth = true;
+    }
+    if (this.phone) {
+      this.emptyPhone = false;
+    }
+    else {
+      this.emptyPhone = true;
+    }
+    if (this.adress) {
+      this.emptyAdress = false;
+    }
+    else {
+      this.emptyAdress = true;
     }
   }
 
@@ -61,14 +111,43 @@ export class ProfileComponent implements OnInit {
   }
 
   save(): void {
-    this.check = false;
-    this.currentUser = JSON.parse(localStorage.getItem('user'));
-    const user = new Profile(this.email, this.name, this.phone, this.adress, this.image, this.currentUser.orders);
-    this.authService.updateUserData(this.currentUser.id, user);
-    this.updateLocal(user);
-    console.log("all's good");
-    alert('Changes were saved!');
-    this.getUserData();
+    if (this.firstName && this.lastName && this.birth && this.phone && this.adress) {
+      this.check = false;
+      this.currentUser = JSON.parse(localStorage.getItem('user'));
+      const user = new Profile(this.email, this.firstName, this.lastName, this.birth, this.phone, this.adress, this.image, this.currentUser.orders);
+      this.authService.updateUserData(this.currentUser.id, user);
+      this.updateLocal(user);
+      console.log("all's good");
+      this.checkSave = true;
+      this.color = 'white';
+      this.content = 'Changes were saved!';
+      this.getUserData();
+    }
+    else {
+      this.content = 'Fill all the fields!';
+      this.color = 'red';
+      this.checkSave = true;
+    }
+  }
+
+  CheckFName(): boolean {
+    return this.regExpFirstName.test(this.firstName);
+  }
+
+  CheckLName(): boolean {
+    return this.regExpLastName.test(this.lastName);
+  }
+
+  CheckBirth(): boolean {
+    return this.regExpBirth.test(this.birth);
+  }
+
+  CheckPhone(): boolean {
+    return this.regExpPhone.test(this.phone);
+  }
+
+  CheckAdress(): boolean {
+    return this.regExpAdress.test(this.adress);
   }
 
   uploadFile(event) {
@@ -87,6 +166,14 @@ export class ProfileComponent implements OnInit {
   }
 
   edit(): void {
+    this.emptyfirstName = false;
+    this.emptylastName = false;
+    this.emptyBirth = false;
+    this.emptyPhone = false;
+    this.emptyAdress = false;
     this.check = true;
+    this.checkSave = false;
+    this.color = 'white';
+    this.content = 'Changes were saved!';
   }
 }

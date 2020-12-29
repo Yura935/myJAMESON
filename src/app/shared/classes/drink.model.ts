@@ -9,9 +9,6 @@ export class Drink implements IDrink {
         public imageTitle: string,
         public imageBlog: string,
         public ingredients: Array<string>,
-        public preparation: Array<string>,
-        public weight: string,
-        public price: number,
-        public count: number = 1
+        public preparation: Array<string>
     ) { }
 }

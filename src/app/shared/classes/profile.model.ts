@@ -6,6 +6,8 @@ export class Profile implements IProfile {
     constructor(
         public email: string,
         public firstName: string = '',
+        public lastName: string = '',
+        public birth: string = '',
         public phone: string = '',
         public adress: string = '',
         public image: string = '',

@@ -67,8 +67,8 @@
         line-height: 80px;
         text-decoration: none;
         color: $textColor;
-        border: 3px solid #fff;
-        cursor: pointer;
+        border: 3px solid $textColor;
+        cursor: $linkCursor;
         font-size: .8rem;
         font-weight: 600;
         letter-spacing: 2px;
@@ -78,7 +78,7 @@
 
       a:hover {
         color: #000;
-        background-color: #fff;
+        background-color: $textColor;
         box-shadow: 0 0 6px 3px darkgoldenrod;
       }
     }
@@ -111,7 +111,7 @@
 
         a {
           text-decoration: none;
-          cursor: pointer;
+          cursor: $linkCursor;
           color: #007e32;
           letter-spacing: 2px;
           font-weight: 600;
@@ -160,7 +160,7 @@
               transition: transform 0.3s ease-out;
               transform: translateY(-0.3rem);
               box-shadow: 0px 3px 15px #2c2c2c;
-              cursor: pointer;
+              cursor: $linkCursor;
             }
           }
 
@@ -187,7 +187,7 @@
 
               h3 {
                 font-weight: 600;
-                color: #fff;
+                color: $textColor;
                 margin-bottom: 10px;
                 font-size: 32px;
               }
@@ -201,7 +201,7 @@
       width: 100%;
       height: 460px;
       padding: 0 20px;
-      color: #004027;
+      color: $mainColorText;
       background-color: #FFF8E1;
       position: relative;
       margin-bottom: 50px;
@@ -345,7 +345,8 @@
         margin-top: 300px;
 
         &-head {
-          font-size: 46px;
+          font-size: 46px; 
+          text-shadow: 2px 1px 2px black; 
         }
       }
 
@@ -357,6 +358,7 @@
           width: 100%;
           font-size: 1rem;
           letter-spacing: 3px;
+          text-shadow: 2px 1px 2px black; 
         }
       }
 

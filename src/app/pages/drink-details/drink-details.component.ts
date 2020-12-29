@@ -34,15 +34,4 @@ export class DrinkDetailsComponent implements OnInit {
       }
     );
   }
-
-  productCount(drink: IDrink, status: boolean): void {
-    if (status) {
-      drink.count++;
-    }
-    else {
-      if (drink.count > 1) {
-        drink.count--;
-      }
-    }
-  }
 }
