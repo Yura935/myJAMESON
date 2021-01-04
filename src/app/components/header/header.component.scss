@@ -80,19 +80,12 @@
   &__nav {
     height: 100vh;
     width: 100%;
-    margin-top: 30px;
     @include flexbox(normal, normal, column, nowrap);
-
-    li:first-child {
-      margin-top: 90px;
-    }
 
     li {
       padding-left: .5em;
 
       a {
-        font-size: $fontNavSize;
-        line-height: 57px;
         color: $textColor;
         font-weight: 600;
         cursor: pointer;
@@ -186,26 +179,6 @@
         width: 100%;
       }
     }
-  }
-}
-
-header .admin-block a {
-  position: absolute;
-  top: 100px;
-  right: 0;
-  padding: 10px;
-  border: 1px solid #c80000;
-  font-size: 15px;
-  line-height: 16px;
-  color: #fefefe;
-  background: #c80000;
-  border-radius: 10px 0 0 10px;
-  transition: 0.5s padding-right;
-  text-decoration: none;
-  z-index: 1;
-
-  &:hover {
-    padding: 10px 20px 10px 10px;
   }
 }
 
@@ -805,6 +778,14 @@ section.modalOut {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .navbar-collapse__nav {
+    li:first-child {
+      margin-top: 150px;
+    }
+  }
+}
+
 @media screen and (max-width: 960px) {
   .navbar {
     height: 10vh;
@@ -827,7 +808,9 @@ section.modalOut {
   }
 
   .navbar-collapse__nav {
-    margin-top: 30px;
+    li:first-child {
+      margin-top: 90px;
+    }
 
     li a {
       font-size: 54px;
@@ -990,16 +973,17 @@ section.modalOut {
 
     .navbar-brand {
       font-size: 38px;
-      // text-align: left;
     }
   }
 
   .navbar-collapse__nav {
-    margin-top: 30px;
+    li:first-child {
+      margin-top: 100px;
+    }
 
     li a {
-      font-size: 50px;
-      line-height: 60px;
+      font-size: 44px;
+      line-height: 52px;
     }
   }
 

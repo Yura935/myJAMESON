@@ -51,8 +51,8 @@ export class HeaderComponent implements OnInit {
   bgOut: string = 'transparent';
 
   regExpName = /^[a-zA-Z]{1}[a-z]{1,19}?$/;
-  regExpPhone = /^[0-9]{10}$/;
-  regExpEmail = /^[a-zA-Z0-9\-\.]{1,}@gmail\.com|org\.ua|ukr\.net|meta\.ua|hotmail\.com|ex\.mail$/;
+  regExpPhone = /^[0-9\+]{10,13}$/;
+  regExpEmail = /^[a-zA-Z0-9\-\.]{1,}@gmail\.com|org\.ua|ukr\.net|meta\.ua|hotmail\.com|ex\.mail|lpnu\.ua$/;
   regExpPass = /^[a-zA-Z0-9]{6,15}$/;
   regExpAdress = /^[a-zA-Z0-9\,\ ]{3,}$/;
   borderColorLog: string = 'salmon';
@@ -61,6 +61,7 @@ export class HeaderComponent implements OnInit {
   borderColorName: string = 'salmon';
   borderColorAdress: string = 'salmon';
 
+  count: number;
   constructor(private authService: AuthService, private orderService: OrderService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -147,6 +148,7 @@ export class HeaderComponent implements OnInit {
     this.topLgOrder = '-200%';
     this.bgOrder = 'transparent';
     this.closeBasket();
+    this.checkLog = true;
   }
 
   private checkLocalUser(): void {
@@ -199,7 +201,9 @@ export class HeaderComponent implements OnInit {
 
   productCount(whiskey: IWhiskey, status: boolean): void {
     if (status) {
-      whiskey.count++;
+      if(whiskey.count < 9){
+        whiskey.count++;
+      }
     }
     else {
       if (whiskey.count > 1) {
@@ -374,7 +378,7 @@ export class HeaderComponent implements OnInit {
         }
       }
       else {
-        alert('Your email is incorrect. Correct the error and try again!');
+        alert('Your login is incorrect. Correct the error and try again!');
         this.borderColorLog = 'red';
         this.borderColorPass = 'red';
         this.borderColorName = 'red';

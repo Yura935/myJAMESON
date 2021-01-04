@@ -47,6 +47,7 @@
         font-weight: 700;
         letter-spacing: normal;
         color: $textColor;
+        text-shadow: 2px 1px 2px black;
       }
     }
 
@@ -186,7 +187,6 @@
 
         .product-card {
           padding: 0 20px;
-          position: relative;
           width: 33%;
           height: 500px;
           margin-bottom: 25px;
@@ -194,6 +194,10 @@
           &__inner {
             width: 100%;
             height: 100%;
+            width: 100%;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
 
             &:hover {
               transition: transform 0.3s ease-out;
@@ -208,22 +212,10 @@
             width: 100%;
             height: 100%;
 
-            .card-img {
-              height: 500px;
-              width: 100%;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-            }
-
             .card-prod {
               @include flexbox(flex-end, normal, column, nowrap);
-              position: absolute;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              left: 0;
-              padding: 0 40px;
+              height: 100%;
+              padding: 0 20px;
 
               h3 {
                 font-weight: 600;
@@ -264,7 +256,7 @@
         &-head {
           font-size: 52px;
           line-height: 1.26;
-          text-shadow: 2px 1px 2px black; 
+          text-shadow: 2px 1px 2px black;
         }
       }
 
@@ -278,7 +270,6 @@
           font-size: 1rem;
           font-weight: 600;
           letter-spacing: 3px;
-          text-shadow: 2px 1px 2px black; 
         }
       }
 

@@ -26,7 +26,6 @@ export class AdminDrinksComponent implements OnInit {
   step: string;
   stepID: number;
   checkS: boolean = false;
-
   ingredients: Array<string> = [];
   preparation: Array<string> = [];
 
@@ -39,7 +38,6 @@ export class AdminDrinksComponent implements OnInit {
   editStatus: boolean = false;
 
   drinks: Array<IDrink> = [];
-
   uploadProgressTitle: Observable<number>;
   uploadProgressBlog: Observable<number>;
   constructor(private storage: AngularFireStorage, private drinkService: DrinkService, private toastr: ToastrService) { }
@@ -73,8 +71,12 @@ export class AdminDrinksComponent implements OnInit {
     );
     delete newProd.id;
     this.drinkService.create(newProd).then(() => {
-      console.log('Created new product successfully!');
-    });
+      this.toastr.success('Created new product successfully!', 'Success');
+    })
+    .catch(err => {
+        console.log(err); 
+        this.toastr.error('Error!', 'Denied');
+      });
     this.reset();
   }
 
@@ -93,9 +95,12 @@ export class AdminDrinksComponent implements OnInit {
   deleteProduct(drink: IDrink): void {
     this.drinkService.delete(drink.id.toString())
       .then(() => {
-        console.log('The product was updated successfully!');
+        this.toastr.success('The product was delated successfully!', 'Success');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err); 
+        this.toastr.error('Error!', 'Denied');
+      });
   }
 
   updateProduct(): void {
@@ -111,8 +116,11 @@ export class AdminDrinksComponent implements OnInit {
     );
     delete currentProd.id;
     this.drinkService.update(this.drinkID.toString(), currentProd)
-      .then(() => console.log('The product was updated successfully!'))
-      .catch(err => console.log(err));
+      .then(() => this.toastr.success('The product was updated successfully!', 'Success'))
+      .catch(err => {
+        console.log(err); 
+        this.toastr.error('Error!', 'Denied');
+      });
     this.editStatus = false;
     this.reset();
   }
@@ -203,7 +211,6 @@ export class AdminDrinksComponent implements OnInit {
       this.storage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
         this.drinkTitleImage = url;
       });
-      console.log('Photo added!');
       this.toastr.success('Order added!', 'Success');
     });
     upload.catch(err => {
@@ -221,7 +228,6 @@ export class AdminDrinksComponent implements OnInit {
       this.storage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
         this.drinkBlogImage = url;
       });
-      console.log('Photo added!');
       this.toastr.success('Order added!', 'Success');
     });
     upload.catch(err => {
@@ -229,5 +235,4 @@ export class AdminDrinksComponent implements OnInit {
       this.toastr.error('Error!', 'Denied');
     });
   }
-
 }

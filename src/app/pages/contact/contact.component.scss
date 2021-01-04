@@ -30,7 +30,7 @@
         height: 240px;
         border: 1px solid gray;
         outline: none;
-        background-image: url('../../../assets/images/admin.jpg');
+        background-image: url('../../../assets/images/admin.webp');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -52,11 +52,6 @@
           font-size: 20px;
           color: #000;
         }
-
-        // .info--number {
-        //   @extend .info--email;
-        //   color: darkblue;
-        // }
 
         .contacts-links {
           width: 100%;
@@ -142,11 +137,11 @@
         }
 
         .first {
-          background-image: url('../../../assets/images/confidential.jpg');
+          background-image: url('../../../assets/images/confidential.webp');
         }
 
         .second {
-          background-image: url('../../../assets/images/cyber_security.jpg');
+          background-image: url('../../../assets/images/cyber_security.webp');
         }
       }
 
@@ -160,7 +155,7 @@
       height: 600px;
       position: relative;
       left: -5.5%;
-      background-image: url('../../../assets/images/jameson-contact.jpg');
+      background-image: url('../../../assets/images/jameson-contact.webp');
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
@@ -209,11 +204,6 @@
             font-size: 18px;
           }
 
-          // .info--number {
-          //   @extend .info--email;
-          //   color: darkblue;
-          // }
-
           .contacts-links {
             @include flexbox(normal, center, row, nowrap);
             margin: 10px 0;
@@ -249,7 +239,7 @@
 
       .contacts-collapse {
         width: 111.8%;
-        height: 550px;
+        height: 400px;
         left: -6%;
       }
     }
@@ -348,7 +338,7 @@
 @media screen and (max-width: 376px) {
   .contacts-container {
     .contacts-collapse {
-      width: 113%;
+      width: 112.9%;
     }
   }
 }

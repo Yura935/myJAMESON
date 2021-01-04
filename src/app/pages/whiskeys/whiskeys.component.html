@@ -35,9 +35,8 @@
 
             <div class="products-whiskeys">
                 <div class="product-card" *ngFor="let whiskey of whiskeys">
-                    <div class="product-card__inner">
+                    <div class="product-card__inner"  [style.backgroundImage]="'url('+whiskey.imageTitle+')'">
                         <a [routerLink]="[ '/our-whiskeys/' +whiskey.urlName ]">
-                            <div class="card-img" [style.backgroundImage]="'url('+whiskey.imageTitle+')'"></div>
                             <div class="card-prod">
                                 <h3 class="card-prod-text">{{ whiskey.name }}</h3>
                             </div>

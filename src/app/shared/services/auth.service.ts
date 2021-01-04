@@ -20,7 +20,7 @@ export class AuthService {
   signUp(email: string, password: string, userName: string, userPhone: string): void {
     this.auth.createUserWithEmailAndPassword(email, password)
       .then(userResponse => {
-        const user = new Profile(userResponse.user.email);
+        const user = new Profile(userResponse.user.email, userName, '', '', userPhone, '', '', []);
         this.db.collection('users').add({ ...user })
           .then(collection => {
             collection.get()
@@ -49,7 +49,6 @@ export class AuthService {
   signIn(email: string, password: string): void {
     this.auth.signInWithEmailAndPassword(email, password)
       .then(userResponse => {
-        console.log(userResponse);
         this.db.collection('users').ref.where('email', '==', userResponse.user.email).onSnapshot(
           snap => {
             snap.forEach(user => {
@@ -97,7 +96,6 @@ export class AuthService {
       localStorage.setItem('adminCredential', JSON.stringify((data)));
       response.user.getIdToken().then(
         token => {
-          console.log(token);
           localStorage.setItem('token', token);
           this.router.navigateByUrl('admin');
         }

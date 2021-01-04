@@ -9,7 +9,7 @@
         </div>
         <div class="menu--info" *ngIf="change">
             <div class="info--image">
-                <img [src]="image" alt="">
+                <div class="img" [style.backgroundImage]="'url('+image+')'"></div>
                 <div class="file">
                     <button class="btn">Upload</button>
                     <input type="file" (change)="uploadFile($event)" name="myfile">
@@ -41,7 +41,7 @@
 
                 <div class="info--box">
                     <label for="birth">Date of birth:</label>
-                    <input *ngIf="check" type="text" [(ngModel)]="birth" name="birth" id="birth"
+                    <input *ngIf="check" type="date" [(ngModel)]="birth" name="birth" id="birth"
                         placeholder="Please write yourdate of birth ..." (input)="CheckBirth()"
                         [style.borderColor]="CheckBirth() ? 'gray' : 'red'">
                     <p *ngIf="!check">{{ birth }}</p>

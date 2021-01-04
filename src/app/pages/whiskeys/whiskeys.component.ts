@@ -9,7 +9,6 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./whiskeys.component.scss']
 })
 export class WhiskeysComponent implements OnInit {
-
   whiskeys: Array<IWhiskey> = [];
   constructor(private whiskeyService: WhiskeyService) { }
 

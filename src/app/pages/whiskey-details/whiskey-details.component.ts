@@ -14,14 +14,11 @@ export class WhiskeyDetailsComponent implements OnInit {
   display: string = 'none';
   play: string = 'block';
   videoUrl: string;
-
   сlientWidth = window.innerWidth;
   videoWidth: string = '958';
   videoHeight: string = '520';
   videoLeft: string = '10%'
-
   count: number;
-
   constructor(private whiskeyService: WhiskeyService,
     private activatedRoute: ActivatedRoute,
     private orderService: OrderService) { }
@@ -43,7 +40,6 @@ export class WhiskeyDetailsComponent implements OnInit {
           this.view = product;
           this.videoUrl = this.view.video;
           this.videoUrl = this.videoUrl.substring(17, this.videoUrl.length);
-          console.log(this.videoUrl);
         });
       }
     );
@@ -119,7 +115,9 @@ export class WhiskeyDetailsComponent implements OnInit {
 
   productCount(whiskey: IWhiskey, status: boolean): void {
     if (status) {
-      whiskey.count++;
+      if (whiskey.count < 9) {
+        whiskey.count++;
+      }
     }
     else {
       if (whiskey.count > 1) {
@@ -129,12 +127,17 @@ export class WhiskeyDetailsComponent implements OnInit {
   }
 
   addToBasket(whiskey: IWhiskey): void {
-    console.log(whiskey);
     this.orderService.addBasket(whiskey);
     whiskey.count = 1;
   }
 
   changeCount(prod: IWhiskey): void {
+    if (this.count > 9) {
+      this.count = 9;
+    }
+    if (!this.count) {
+      this.count = 1;
+    }
     prod.count = this.count;
   }
 }

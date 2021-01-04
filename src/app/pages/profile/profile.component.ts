@@ -3,6 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Profile } from 'src/app/shared/classes/profile.model';
 import { IOrder } from 'src/app/shared/interfaces/order.interface';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,6 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class ProfileComponent implements OnInit {
   change: boolean = true;
-
   firstName: string;
   lastName: string;
   birth: string;
@@ -37,11 +37,10 @@ export class ProfileComponent implements OnInit {
 
   regExpFirstName = /^[a-zA-Z]{1}[a-z]{1,19}?$/;
   regExpLastName = /^[a-zA-Z]{1}[a-z]{1,19}?$/;
-  regExpBirth = /^[a-zA-Zа-юА-Ю0-9\.\ ]{8,19}$/;
+  regExpBirth = /^[a-zA-Zа-юА-Ю0-9\.\ \-]{8,19}$/;
   regExpPhone = /^[0-9]{10}$/;
   regExpAdress = /^[a-zA-Z0-9\,\ ]{3,}$/;
-
-  constructor(private authService: AuthService, private storage: AngularFireStorage) { }
+  constructor(private authService: AuthService, private storage: AngularFireStorage, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getUserData();
@@ -117,7 +116,7 @@ export class ProfileComponent implements OnInit {
       const user = new Profile(this.email, this.firstName, this.lastName, this.birth, this.phone, this.adress, this.image, this.currentUser.orders);
       this.authService.updateUserData(this.currentUser.id, user);
       this.updateLocal(user);
-      console.log("all's good");
+      this.toastr.success('Changes were saved!', 'Success');
       this.checkSave = true;
       this.color = 'white';
       this.content = 'Changes were saved!';
@@ -157,11 +156,15 @@ export class ProfileComponent implements OnInit {
     const task = ref.put(file);
 
     task.then(image => {
+      this.toastr.success('Photo added success!', 'Success');
       this.storage.ref(`images/${image.metadata.name}`).getDownloadURL().subscribe(url => {
         this.image = url;
-        console.log(url);
         this.save();
       });
+    })
+    .catch(err => {
+      console.log(err); 
+      this.toastr.error('Error!', 'Denied');
     });
   }
 

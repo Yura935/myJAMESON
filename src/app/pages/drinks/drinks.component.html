@@ -43,9 +43,8 @@
 
             <div class="products-drinks">
                 <div class="product-card" *ngFor="let drink of drinks | search: searchName">
-                    <div class="product-card__inner">
+                    <div class="product-card__inner" [style.backgroundImage]="'url(' +drink.imageTitle+ ')'">
                         <a [routerLink]="[ '/our-drinks/' +drink.urlName ]">
-                            <div class="card-img" [style.backgroundImage]="'url(' +drink.imageTitle+ ')'"></div>
                             <div class="card-prod">
                                 <h3 class="card-prod-text">{{ drink.name }}</h3>
                             </div>

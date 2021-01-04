@@ -49,6 +49,7 @@
         font-weight: 600;
         letter-spacing: normal;
         color: $textColor;
+        text-shadow: 2px 1px 2px black;
       }
     }
 
@@ -72,15 +73,15 @@
         }
 
         .img1 {
-          background-image: url('../../../assets/images/heroLandscape_0.jpeg');
+          background-image: url('../../../assets/images/heroLandscape_0.webp');
         }
 
         .img2 {
-          background-image: url('../../../assets/images/heroLandscape_1.jpeg');
+          background-image: url('../../../assets/images/heroLandscape_1.webp');
         }
 
         .img3 {
-          background-image: url('../../../assets/images/heroLandscape_2.jpeg');
+          background-image: url('../../../assets/images/heroLandscape_2.webp');
         }
 
         &__tag {
@@ -208,7 +209,6 @@
 
         &-head {
           width: 75%;
-          text-shadow: 2px 1px 2px black; 
         }
       }
 
@@ -248,22 +248,22 @@
 
 @keyframes resize {
   0% {
-    background-image: url("../../../assets/images/Jameson+-+Evergreen+-+FB+Still+Image.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Evergreen+-+FB+Still+Image.webp");
   }
 
   25% {
-    background-image: url("../../../assets/images/Jameson+-+Evergreen+-+IG+Still+Image1.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Evergreen+-+IG+Still+Image1.webp");
   }
 
   50% {
-    background-image: url("../../../assets/images/Jameson+-+Jameson+Ginger+Lime+-+FB+Still+Image1.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Jameson+Ginger+Lime+-+FB+Still+Image1.webp");
   }
 
   75% {
-    background-image: url("../../../assets/images/Jameson+-+Jameson+Ginger+Lime+-+FB+Still+Image.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Jameson+Ginger+Lime+-+FB+Still+Image.webp");
   }
 
   100% {
-    background-image: url("../../../assets/images/Jameson+-+Evergreen+-+FB+Still+Image.jpg");
+    background-image: url("../../../assets/images/Jameson+-+Evergreen+-+FB+Still+Image.webp");
   }
 }

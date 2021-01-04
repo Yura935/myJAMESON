@@ -45,7 +45,7 @@
 
                 <div class="productOrder-counter__box">
                     <span class="productCount lessProduct" (click)="productCount(view,false)"></span>
-                    <input class="counter" type="text" maxlength="3" [(ngModel)]="count" name="count"
+                    <input class="counter" type="text" maxlength="1" [(ngModel)]="count" name="count"
                         (input)="changeCount(view)" [value]="view?.count">
                     <span class="productCount moreProduct" (click)="productCount(view,true)"></span>
                 </div>

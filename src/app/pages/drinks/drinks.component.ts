@@ -16,7 +16,7 @@ export class DrinksComponent implements OnInit {
   searchName: string;
   color: string = '#007e32';
   bgColor: string = 'transparent';
-
+  i = null;
   constructor(private drinkService: DrinkService) { }
 
   ngOnInit(): void {
@@ -37,25 +37,10 @@ export class DrinksComponent implements OnInit {
   }
 
   private Random(): void {
-    let i = Math.round(Math.random() * this.drinks.length);
-    console.log(i);
-    if (i > 0) {
-      if (i == this.drinks.length) {
-        this.randID = this.drinks[i - 1].urlName;
-        this.randImg = this.drinks[i - 1].imageTitle;
-        console.log(this.randImg);
-
-      }
-      else {
-        this.randID = this.drinks[i].urlName;
-        this.randImg = this.drinks[i].imageTitle;
-        console.log(this.randImg);
-      }
-    }
-    else if (i == 0) {
-      this.randID = this.drinks[i].urlName;
-      this.randImg = this.drinks[i].imageTitle;
-      console.log(this.randImg);
+    if(this.i == null){
+      this.i = Math.ceil(Math.random() * this.drinks.length);
+      this.randID = this.drinks[this.i].urlName;
+      this.randImg = this.drinks[this.i].imageTitle;
     }
   }
 

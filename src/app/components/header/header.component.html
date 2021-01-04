@@ -43,9 +43,6 @@
                 </li>
             </ul>
         </div>
-        <div class="admin-block">
-            <a [routerLink]="[ '/admin' ]">Admin</a>
-        </div>
     </nav>
 
     <div class="navbar-collapse" [style.left]="left">
@@ -112,7 +109,7 @@
                                 <td scope="row">
                                     <div class="counter">
                                         <button class="btn danger button" (click)="productCount(prod, false)">-</button>
-                                        <input type="text" class="count" max-lenght="3" [value]="prod.count">
+                                        <input type="text" class="count" max-lenght="1" [value]="prod.count" readonly>
                                         <button class="btn btn-success button"
                                             (click)="productCount(prod, true)">+</button>
                                     </div>
@@ -206,8 +203,8 @@
             <div class="modalI-body">
                 <div class="modalI-body__box">
                     <div class="box-input">
-                        <label for="login">Login:</label>
-                        <input type="email" [(ngModel)]="userEmail" name="userEmail" id="login"
+                        <label for="email">Email:</label>
+                        <input type="email" [(ngModel)]="userEmail" name="userEmail" id="email"
                             [style.borderColor]="borderColorLog" placeholder="Please enter your email">
                     </div>
 
@@ -218,7 +215,7 @@
                     </div>
 
                     <div class="box-input" *ngIf="!checkLog">
-                        <label for="name">User name:</label>
+                        <label for="name">First name:</label>
                         <input type="text" [(ngModel)]="userName" name="userName" id="name"
                             [style.borderColor]="borderColorName" placeholder="Please enter your name">
                     </div>
