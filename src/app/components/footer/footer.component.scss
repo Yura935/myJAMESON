@@ -4,29 +4,22 @@
 .footer {
   background: $mainColorText;
   background-size: 100% 100%;
-  color: $textFooter;
-  margin-left: auto;
-  margin-right: auto;
   max-width: 1600px;
   padding-bottom: 15px;
   padding-top: 5px;
 
   &-container {
     width: 100%;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 0 20px;
     margin-right: auto;
     margin-left: auto;
 
     &__box {
-      width: 100%;
       @include flexbox(normal, normal, column, nowrap);
 
       .footer-logo {
         height: 150px;
-        width: 100%;
         text-align: center;
-        vertical-align: middle;
 
         img {
           height: inherit;
@@ -35,7 +28,6 @@
     }
 
     &__flex {
-      width: 100%;
       @include flexbox(normal, normal, row, nowrap);
     }
 
@@ -47,20 +39,11 @@
         padding-left: 20px;
 
         ul {
-          padding-left: 0;
-          list-style: none;
-          font-size: 10px;
-          letter-spacing: 0;
-          line-height: 24px;
-          margin-bottom: 0;
-
           li a {
             color: $textFooter;
             font-size: 42px;
             font-weight: 600;
-            letter-spacing: 0;
             line-height: 46px;
-            cursor: $linkCursor;
           }
         }
       }
@@ -80,8 +63,8 @@
           background-repeat: no-repeat;
           background-size: cover;
           background-position: center;
-          margin: 5px 10px;
-          transition: all 0.2s;
+          margin: 5px;
+          transition: all 0.1s;
 
           a {
             display: inline-block;
@@ -92,32 +75,29 @@
       }
 
       .instagram {
-        background-image: url('../../../assets/icons/instagram1.svg');
-      }
-
-      .instagram:hover {
-        background-color: #fff;
-        border-radius: 13px;
         background-image: url('../../../assets/icons/instagram.svg');
       }
 
+      .instagram:hover {
+        background-image: url('../../../assets/icons/instagram1.svg');
+      }
+
       .facebook {
+        background-image: url('../../../assets/icons/facebook.svg');
+      }
+
+      .facebook:hover {
         background-image: url('../../../assets/icons/facebook1.svg');
         background-color: #fff;
         border-radius: 5px;
       }
 
-      .facebook:hover {
-        background-image: url('../../../assets/icons/facebook.svg');
-        background-color: transparent;
-      }
-
       .twitter {
-        background-image: url('../../../assets/icons/twitter1.svg');
+        background-image: url('../../../assets/icons/twitter.svg');
       }
 
       .twitter:hover {
-        background-image: url('../../../assets/icons/twitter.svg');
+        background-image: url('../../../assets/icons/twitter1.svg');
       }
 
       .youtube {
@@ -137,7 +117,7 @@ a,
 a:hover {
   text-decoration: none;
   outline: none;
-  cursor: pointer;
+  cursor: $linkCursor;
 }
 
 @media screen and (max-width: 960px) {
@@ -145,7 +125,7 @@ a:hover {
     .footer-nav {
       ul li a {
         font-size: 40px;
-        line-height: 50px;
+        line-height: 46px;
       }
     }
   }
@@ -153,13 +133,8 @@ a:hover {
   .footer-container__menu_sec {
     ul {
       li {
-        width: 50px;
-        height: 50px;
-        margin: 5px;
-      }
-
-      .instagram:hover {
-        border-radius: 15px;
+        width: 45px;
+        height: 45px;
       }
     }
   }
@@ -168,10 +143,10 @@ a:hover {
 @media screen and (max-width: 576px) {
   .footer-container__menu {
     width: 60%;
-    
+
     .footer-nav {
       padding-left: 0;
-      
+
       ul li a {
         font-size: 32px;
         line-height: 40px;
@@ -187,11 +162,6 @@ a:hover {
       li {
         width: 40px;
         height: 40px;
-        margin: 5px;
-      }
-
-      .instagram:hover {
-        border-radius: 13px;
       }
     }
   }

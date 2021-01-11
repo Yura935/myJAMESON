@@ -4,13 +4,10 @@
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
   height: 12vh;
   width: 100%;
   z-index: 1000;
   padding: 0 40px 0;
-  margin: 0 auto 0;
   @include flexbox(flex-start, center, row, wrap);
   background-color: $mainColor;
 
@@ -19,12 +16,9 @@
     width: 40px;
     display: none;
     cursor: $linkCursor;
-    background-color: rgba(0, 64, 39, 0);
+    background-color: transparent;
     border: none;
-    background-position: center;
-    background-size: contain;
-    position: relative;
-    margin-left: 15px;
+    margin-left: 10px;
 
     .bar1,
     .bar2,
@@ -32,7 +26,7 @@
       width: 25px;
       height: 3px;
       background-color: $textColor;
-      margin: 6px 0;
+      margin: 6px;
       transition: 0.4s;
     }
 
@@ -42,19 +36,15 @@
   }
 
   .navbar-brand {
-    display: inline-block;
+    display: block;
     padding-top: .2875rem;
     padding-bottom: .2875rem;
-    font-size: 34px;
-    line-height: inherit;
-    white-space: nowrap;
+    font-size: 36px;
     position: absolute;
     color: $textColor;
     margin: 0 auto;
-    width: auto;
     text-align: center;
     cursor: $linkCursor;
-    text-decoration: none;
   }
 }
 
@@ -73,13 +63,12 @@
   position: fixed;
   top: 0;
   z-index: 130;
-  padding: 0 10px 0 20px;
+  padding: 0 20px;
   background: $mainColor;
   transition: left 0.3s ease-out;
 
   &__nav {
     height: 100vh;
-    width: 100%;
     @include flexbox(normal, normal, column, nowrap);
 
     li {
@@ -88,8 +77,6 @@
       a {
         color: $textColor;
         font-weight: 600;
-        cursor: pointer;
-        text-decoration: none;
       }
 
       a:hover {
@@ -104,23 +91,16 @@
 .navbar-wrapper {
   display: block;
   margin-left: auto;
-  margin-right: 0;
 
   &__nav {
     @include flexbox(normal, center, row, nowrap);
-    padding-left: 0;
-    margin-bottom: 0;
     font-weight: 600;
-    letter-spacing: 0;
-    line-height: $fontNavSize;
-    list-style: none;
+    line-height: 42px;
 
     .basket {
       display: inline-block;
-      position: relative;
 
       &-link {
-        width: 100%;
         height: 100%;
         display: block;
         cursor: $linkCursor;
@@ -129,18 +109,16 @@
           width: 35px;
           height: 35px;
           display: table;
-          margin: 15px auto -18px;
+          margin: 15px auto -17px;
         }
 
         .basketPrice {
           color: $textColor;
-          text-align: center;
 
           i {
             font-size: 14px;
             display: inline-block;
-            vertical-align: bottom;
-            font-style: normal;
+            vertical-align: middle;
           }
         }
       }
@@ -151,12 +129,12 @@
 
       a {
         font-size: 18px;
-        line-height: 57px;
+        line-height: 50px;
         color: $textColor;
         font-weight: 600;
-        cursor: $linkCursor;
         text-decoration: none;
         position: relative;
+        cursor: $linkCursor;
       }
 
       a.active {
@@ -188,27 +166,21 @@
   position: fixed;
   top: 0;
   z-index: 2000;
-  min-width: 200px;
   background-color: #fff;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   transition: 0.5s right;
 
   .basketOpen {
     width: 100%;
     height: 100%;
     padding: 0 20px 20px;
-    overflow: scroll;
-    overflow-x: hidden;
-    overflow-y: auto;
+    // overflow: scroll;
+    // overflow-x: hidden;
+    // overflow-y: auto;
 
     .basket-empty {
-      width: 100%;
-      height: 300px;
+      height: 310px;
 
       &__head {
-        width: 100%;
         position: relative;
         padding-top: 77px;
 
@@ -218,10 +190,8 @@
           font-weight: bold;
           line-height: 1.5;
           text-align: center;
-          text-transform: none;
           border: $baseBorder black;
           box-shadow: 0 0 10px 3px black;
-          margin-left: 0;
           margin-bottom: 20px;
           color: crimson;
           text-shadow: 2px 1px 2px black;
@@ -232,8 +202,8 @@
           height: 1px;
           width: 80%;
           position: absolute;
-          bottom: 0;
-          left: 40px;
+          bottom: -40px;
+          left: 60px;
           border-bottom: 1px solid gray;
         }
 
@@ -246,7 +216,6 @@
           padding: 15px 10px 15px 20px;
           margin-top: -20px;
           margin-right: -15px;
-          line-height: 10px;
           cursor: $linkCursor;
 
           .line1,
@@ -269,9 +238,9 @@
       }
 
       &__box {
-        width: 100%;
-        padding: 30px 50px;
+        padding: 30px 50px 20px;
         position: relative;
+        margin-top: 25px;
 
         .box--text {
           padding: 20px 0;
@@ -284,33 +253,28 @@
         }
 
         a.box--link {
+          display: block;
+          text-align: center;
           font-size: 20px;
           font-weight: 500;
           color: crimson;
           text-shadow: 2px 1px 2px black;
-          margin-left: 32%;
         }
       }
     }
 
     .basket-content {
-      width: 100%;
       height: 70%;
 
       &__head {
-        width: 100%;
-        position: relative;
         padding-top: 25px;
 
         .head--title {
-          position: relative;
           font-size: 32px;
           font-weight: bold;
           line-height: 1.5;
           text-align: center;
-          text-transform: none;
           padding-bottom: 35px;
-          margin-left: 0;
           margin-bottom: 20px;
           color: crimson;
           text-shadow: 2px 1px 2px black;
@@ -326,7 +290,6 @@
         padding: 15px 10px 15px 20px;
         z-index: 1;
         margin-top: -20px;
-        line-height: 10px;
         cursor: $linkCursor;
 
         .line1,
@@ -348,12 +311,10 @@
       }
 
       &__order {
-        margin-top: 30px;
+        margin-top: 15px;
 
         table {
-          width: 100%;
           max-height: 100%;
-          border-collapse: collapse;
           margin-bottom: 15px;
           color: crimson;
 
@@ -373,18 +334,14 @@
               td.Del {
                 line-height: 0;
                 padding: 10px 0;
+                color: #dc3545;
+                font-weight: 700;
+                cursor: $linkCursor;
               }
 
               .icon {
                 height: 80px;
                 width: 80px;
-                margin: 0px auto;
-              }
-
-              .remove {
-                color: #dc3545;
-                font-weight: 700;
-                cursor: $linkCursor;
               }
 
               .counter {
@@ -396,7 +353,6 @@
                   width: 40px;
                   height: 40px;
                   padding: 13px;
-                  background-color: transparent;
                   border: none;
                   color: crimson;
                   font-weight: 600;
@@ -422,14 +378,10 @@
         }
 
         .orderCheck {
-          width: 100%;
-
           h2.totalPrice {
             color: crimson;
             text-shadow: 2px 1px 2px black;
-            text-align: left;
-            font-size: 40px;
-            margin-bottom: 15px;
+            font-size: 38px;
             font-weight: 700;
           }
 
@@ -438,7 +390,7 @@
             color: #fff;
             background-color: #28a745;
             border-color: #28a745;
-            margin: 10px auto;
+            margin: 15px auto;
 
             &:hover {
               background-color: #218838;
@@ -463,10 +415,7 @@
     width: 60%;
     border-radius: 5px;
     background-color: $mainColor;
-    margin: 0 auto;
-    top: 100px;
     left: 20%;
-    z-index: 1;
     transition: top 1s;
 
     .modal-header {
@@ -474,6 +423,7 @@
         font-weight: 600;
         font-size: 32px;
         color: $textColor;
+        line-height: 1.2;
       }
 
       .close {
@@ -482,7 +432,6 @@
         padding: 10px;
         margin-right: -10px;
         margin-top: -5px;
-        cursor: $linkCursor;
         opacity: 1;
 
         img {
@@ -533,9 +482,10 @@
           height: 100%;
           @include flexbox(normal, normal, column, wrap);
           padding: 10px 5px;
+          color: $textColor;
 
-          .product {
-            color: $textColor;
+          span {
+            padding: 5px 0;
           }
         }
 
@@ -565,6 +515,7 @@
 
     hr {
       margin: 10px 0;
+      background-color: #dee2e6;
     }
 
     .modal-buttons {
@@ -577,7 +528,7 @@
         background-color: rgb(109, 0, 0);
         color: #ffffff;
         border: 1px solid darkred;
-        border-radius: 3px;
+        border-radius: 5px;
         margin: 5px;
         padding: 0;
       }
@@ -587,10 +538,8 @@
       }
 
       .btn-submit {
+        @extend .btn-close;
         width: 115px;
-        height: 45px;
-        margin: 5px;
-        color: #ffffff;
         background-color: salmon;
         border: 1px solid rgb(252, 115, 100);
       }
@@ -631,13 +580,9 @@ section.modalOut {
     }
 
     .btn-close {
-      height: 40px;
-      width: 130px;
-      border-radius: $mainBRadius;
-      color: $textColor;
+      @extend .btn-out;
       background-color: gray;
       border-color: gray;
-      outline: none;
     }
 
     .btn-close:hover {
@@ -650,7 +595,6 @@ section.modalOut {
 .modalI-all {
   width: 100%;
   height: 100vh;
-  background: $bgDark;
   position: fixed;
   z-index: 50;
 }
@@ -659,45 +603,39 @@ section.modalOut {
   position: fixed;
   width: 60%;
   background-color: $mainColor;
-  margin: 0 auto;
   left: 20%;
-  z-index: 1;
   transition: top 1s;
 
   &-close {
     height: 50px;
-    width: 100%;
-    padding: 10px 20px 0;
+    position: absolute;
+    right: 0;
+    width: 50px;
+    padding: 10px;
+    cursor: $linkCursor;
 
-    &__but {
-      height: 40px;
-      width: 40px;
-      cursor: $linkCursor;
-      border: none;
-      float: right;
-
-      .line1,
-      .line2 {
-        width: 30px;
-        height: 5px;
-        background-color: $textColor;
-        margin: 5px;
-        border-radius: $mainBRadius;
-      }
-
-      .line1 {
-        transform: rotate(-45deg) translate(-12px, 10px);
-      }
-
-      .line2 {
-        transform: rotate(45deg) translate(3px, 4px);
-      }
+    .line1,
+    .line2 {
+      width: 30px;
+      height: 5px;
+      background-color: $textColor;
+      margin: 5px 0;
+      border-radius: $mainBRadius;
     }
+
+    .line1 {
+      transform: rotate(-45deg) translate(-6px, 5px);
+    }
+
+    .line2 {
+      transform: rotate(45deg) translate(-2px, -1px);
+    }
+
   }
 
   &-head {
-    width: 100%;
-    height: 80px;
+    height: 70px;
+    margin-top: 15px;
 
     &__title {
       text-align: center;
@@ -709,12 +647,10 @@ section.modalOut {
   }
 
   &-body {
-    width: 100%;
     padding: 10px 20px 0;
 
     &__box {
-      height: 100%;
-      width: 100%;
+      height: auto;
       @include flexbox(normal, normal, column, nowrap);
 
       .box-input {
@@ -742,7 +678,6 @@ section.modalOut {
   }
 
   &-button {
-    width: 100%;
     height: 70px;
     padding: 10px 20px;
 
@@ -778,29 +713,21 @@ section.modalOut {
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .navbar-collapse__nav {
-    li:first-child {
-      margin-top: 150px;
-    }
-  }
-}
-
 @media screen and (max-width: 960px) {
   .navbar {
     height: 10vh;
-    padding: 5px 20px 0;
+    padding: 0 20px;
 
     .navbar-brand {
       left: 0;
       right: 0;
       width: 50%;
-      font-size: $fontNavSize;
+      font-size: 54px;
     }
   }
 
   .navbar-hamburger {
-    display: inline-block;
+    display: block;
   }
 
   .navbar-wrapper {
@@ -814,39 +741,73 @@ section.modalOut {
 
     li a {
       font-size: 54px;
-      line-height: 67px;
-    }
-  }
-
-  header .admin-block a {
-    top: 120px;
-    padding: 20px;
-    font-size: 20px;
-    line-height: 18px;
-
-    &:hover {
-      padding: 20px 30px 20px 20px;
+      line-height: 65px;
     }
   }
 
   section.modalOut {
     .modal-buttons {
-      width: 40%;
-      height: 80px;
+      width: 50%;
+      height: 120px;
+      left: 25%;
 
       .btn-out,
       .btn-close {
-        height: 50px;
-        width: 130px;
-        font-size: 20px;
+        height: 60px;
+        width: 140px;
+        font-size: 24px;
       }
     }
   }
-
-  .modalI-button {
-    .modalI-link {
-      font-size: 16px;
-      margin: 5px 0;
+  
+  .modalI {
+    width: 70%;
+    left: 15%;
+    border-radius: 10px;
+  
+    &-close {
+      margin: 10px 10px 0 0;
+    }
+  
+    &-head {
+      &__title {
+        font-size: 42px;
+      }
+    }
+  
+    &-body {
+      padding: 15px 20px 0;
+  
+      &__box {
+        .box-input {
+          height: 60px;
+  
+          label {
+            font-size: 24px;
+          }
+  
+          input {
+            width: 270px;
+            height: 35px;
+          }
+        }
+      }
+    }
+  
+    &-button {
+      height: 70px;
+      padding: 10px 20px;
+  
+      .button__inner {
+        width: 45%;
+        line-height: 48px;
+        font-size: 24px;
+      }
+  
+      .modalI-link {
+        font-size: 17px;
+        margin: 5px 0;
+      }
     }
   }
 
@@ -863,22 +824,15 @@ section.modalOut {
           .head--title {
             height: 65px;
             font-size: 40px;
-            line-height: 60px;
+            line-height: 56px;
             margin-bottom: 20px;
           }
 
-          .head--title::after {
-            content: '';
-            height: 2px;
-            width: 80%;
-            position: absolute;
-            bottom: -40px;
-            left: 40px;
-            border-bottom: 1px solid gray;
+          .head--title::after {  
+            left: 10%;
           }
 
           .head--close {
-
             .line1,
             .line2 {
               height: 4px;
@@ -891,16 +845,15 @@ section.modalOut {
         }
 
         &__box {
-          margin-top: 40px;
+          margin-top: 45px;
 
           .box--text {
             padding: 20px 0;
-            font-size: 30px;
+            font-size: 32px;
           }
 
           a.box--link {
             font-size: 24px;
-            margin-left: 21%;
           }
         }
       }
@@ -912,7 +865,7 @@ section.modalOut {
           padding-top: 30px;
 
           .head--title {
-            font-size: 40px;
+            font-size: 44px;
             padding-bottom: 30px;
           }
         }
@@ -949,15 +902,15 @@ section.modalOut {
 
           .orderCheck {
             h2.totalPrice {
-              font-size: 44px;
-              margin-bottom: 20px;
+              font-size: 40px;
             }
 
             .order {
               width: 40%;
-              height: 50px;
+              height: 55px;
               font-size: 24px;
               padding: 0;
+              margin-top: 25px;
             }
           }
         }
@@ -968,33 +921,21 @@ section.modalOut {
 
 @media screen and (max-width: 576px) {
   .navbar {
-    height: 10vh;
-    padding: 5px 10px 0;
+    padding: 0 10px;
 
     .navbar-brand {
-      font-size: 38px;
+      font-size: 40px;
     }
   }
 
   .navbar-collapse__nav {
     li:first-child {
-      margin-top: 100px;
+      margin-top: 80px;
     }
 
     li a {
       font-size: 44px;
       line-height: 52px;
-    }
-  }
-
-  .navbar-collapse__nav {
-    height: 100vh;
-    width: 100%;
-    margin-top: 30px;
-    @include flexbox(normal, normal, column, nowrap);
-
-    li:first-child {
-      margin-top: 40px;
     }
   }
 
@@ -1007,7 +948,7 @@ section.modalOut {
       left: 30%;
       padding: 5px;
       border-radius: $mainBRadius;
-      transition: top 0.7s;
+      transition: top 0.6s;
       @include flexbox(space-around, center, column-reverse, nowrap);
 
       .btn-out,
@@ -1025,12 +966,8 @@ section.modalOut {
     left: 2.5%;
 
     &-close {
-      height: 40px;
-      padding: 10px 15px 0;
-
-      &__but {
-        height: 30px;
-        width: 30px;
+      height: 50px;
+      padding: 10px;
 
         .line1,
         .line2 {
@@ -1046,20 +983,19 @@ section.modalOut {
         .line2 {
           transform: rotate(45deg) translate(0px, 0px);
         }
-      }
     }
 
     &-head {
-      height: 65px;
+      height: 60px;
 
       &__title {
-        line-height: 55px;
+        line-height: 50px;
         font-size: 32px;
       }
     }
 
     &-body {
-      padding: 0 15px;
+      padding: 10px 15px 0;
 
       &__box {
         .box-input {
@@ -1071,7 +1007,7 @@ section.modalOut {
           }
 
           input {
-            width: 190px;
+            width: 180px;
           }
         }
       }
@@ -1079,20 +1015,9 @@ section.modalOut {
 
     &-button {
       .button__inner {
-        width: 50%;
+        width: 45%;
         font-size: 20px;
       }
-    }
-  }
-
-  header .admin-block a {
-    top: 70px;
-    padding: 10px;
-    font-size: 16px;
-    line-height: 15px;
-
-    &:hover {
-      padding: 10px 20px 10px 10px;
     }
   }
 
@@ -1148,6 +1073,10 @@ section.modalOut {
         }
       }
     }
+
+    hr{
+      margin: 5px 0;
+    }
   }
 
   .basketModal {
@@ -1158,8 +1087,8 @@ section.modalOut {
         &__head {
           .head--title {
             height: 60px;
-            font-size: 38px;
-            line-height: 52px;
+            font-size: 36px;
+            line-height: 50px;
             margin-bottom: 0;
           }
 
@@ -1180,14 +1109,13 @@ section.modalOut {
 
           a.box--link {
             font-size: 20px;
-            margin-left: 20%;
           }
         }
       }
 
       .basket-content {
         &__head {
-          height: 90px;
+          height: 70px;
           padding-top: 25px;
 
           .head--title {
@@ -1202,6 +1130,8 @@ section.modalOut {
         }
 
         &__order {
+          margin-top: 25px;
+
           table {
             display: flex;
             overflow-y: scroll;
@@ -1218,8 +1148,6 @@ section.modalOut {
                 td {
                   width: 220px;
                   height: 100px;
-                  text-overflow: ellipsis;
-                  white-space: nowrap;
                   line-height: 75px;
                   text-align: center;
                 }
@@ -1246,6 +1174,7 @@ section.modalOut {
 
             .order {
               width: 100%;
+              height: 60px;
               font-size: 24px;
             }
           }

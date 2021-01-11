@@ -115,11 +115,12 @@
                                     </div>
                                 </td>
                                 <td scope="row" class="Del">
-                                    <span class="remove" (click)="removeProduct(prod)">X</span>
+                                    <span (click)="removeProduct(prod)">X</span>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
                     <div class="orderCheck">
                         <h2 class="totalPrice">Загалом: {{ totalPrice }} грн</h2>
                         <button class="btn order" (click)="openOrderModal()" (click)="closeBasket()">Оплатити</button>
@@ -133,7 +134,7 @@
     <section class="modalOrder" [style.backgroundColor]="bgOrder" [style.top]="topLgOrder">
         <div class="modalOrder-in" [style.top]="topOrder">
             <div class="modal-header">
-                <h4 class="modal-title pull-left">Оплата</h4>
+                <h4>Оплата</h4>
                 <button class="close pull-right" aria-label="Close" (click)="modalDel()">
                     <img src="assets/icons/times-solid.svg" class="img">
                 </button>
@@ -166,7 +167,7 @@
                 <div class="modal-box__block bigBlock blockProduct">
                     <label>Ваші товари:</label>
                     <div class="block--products">
-                        <span class="product" *ngFor="let prod of basket">{{prod.name | uppercase}} : {{prod.count}}
+                        <span *ngFor="let prod of basket">{{prod.name | uppercase}} : {{prod.count}}
                             шт.</span>
                     </div>
                 </div>
@@ -188,11 +189,9 @@
 
     <section class="modalI-all" [style.background]="bg" [style.top]="topLg">
         <div class="modalI" [style.top]="top">
-            <div class="modalI-close">
-                <div class="modalI-close__but" (click)="modalDel()">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                </div>
+            <div class="modalI-close" (click)="modalDel()">
+                <div class="line1"></div>
+                <div class="line2"></div>
             </div>
 
             <div class="modalI-head">
