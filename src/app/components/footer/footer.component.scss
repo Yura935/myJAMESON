@@ -64,7 +64,7 @@
           background-size: cover;
           background-position: center;
           margin: 5px;
-          transition: all 0.1s;
+          transition: all 0.4s;
 
           a {
             display: inline-block;
@@ -75,36 +75,20 @@
       }
 
       .instagram {
-        background-image: url('../../../assets/icons/instagram.svg');
-      }
-
-      .instagram:hover {
         background-image: url('../../../assets/icons/instagram1.svg');
       }
 
       .facebook {
-        background-image: url('../../../assets/icons/facebook.svg');
-      }
-
-      .facebook:hover {
         background-image: url('../../../assets/icons/facebook1.svg');
         background-color: #fff;
         border-radius: 5px;
       }
 
       .twitter {
-        background-image: url('../../../assets/icons/twitter.svg');
-      }
-
-      .twitter:hover {
         background-image: url('../../../assets/icons/twitter1.svg');
       }
 
       .youtube {
-        background-image: url('../../../assets/icons/youtube.svg');
-      }
-
-      .youtube:hover {
         background-color: #fff;
         border-radius: 5px;
         background-image: url('../../../assets/icons/youtube1.svg');
